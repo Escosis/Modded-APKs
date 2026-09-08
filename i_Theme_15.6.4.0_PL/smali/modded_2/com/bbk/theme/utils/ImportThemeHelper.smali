@@ -296,7 +296,7 @@
     if-nez v1, :cond_30
 
     :cond_26
-    if-ne p3, v2, :cond_dd
+    if-ne p3, v2, :cond_b6
 
     const-string v1, ".png"
 
@@ -304,13 +304,9 @@
 
     move-result v1
 
-    if-eqz v1, :cond_dd
+    if-eqz v1, :cond_b6
 
     :cond_30
-    const-string/jumbo v1, "正在导入壁纸..."
-
-    invoke-static {p0, v1}, Lcom/bbk/theme/utils/zc;->showToast(Landroid/content/Context;Ljava/lang/String;)V
-
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v3
@@ -335,18 +331,18 @@
 
     const/4 v4, 0x0
 
-    if-lez v0, :cond_55
+    if-lez v0, :cond_4f
 
     invoke-virtual {v3, v4, v0}, Ljava/lang/String;->substring(II)Ljava/lang/String;
 
     move-result-object v0
 
-    goto :goto_56
+    goto :goto_50
 
-    :cond_55
+    :cond_4f
     move-object v0, v3
 
-    :goto_56
+    :goto_50
     invoke-static {v1, v0}, Lp5/i;->generateWallpaperName(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v3
@@ -358,22 +354,6 @@
     invoke-virtual {v4, v2}, Lcom/bbk/theme/utils/o8;->getResSavePath(I)Ljava/lang/String;
 
     move-result-object v4
-
-    new-instance v5, Ljava/lang/StringBuilder;
-
-    invoke-direct {v5}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string/jumbo v6, "壁纸目录: "
-
-    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v5, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v5}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v5
-
-    invoke-static {p0, v5}, Lcom/bbk/theme/utils/zc;->showToast(Landroid/content/Context;Ljava/lang/String;)V
 
     new-instance v5, Ljava/lang/StringBuilder;
 
@@ -411,7 +391,7 @@
 
     move-result p1
 
-    if-nez p1, :cond_aa
+    if-nez p1, :cond_8f
 
     const-string/jumbo p1, "复制壁纸失败，请检查权限和存储空间"
 
@@ -419,11 +399,7 @@
 
     return-void
 
-    :cond_aa
-    const-string/jumbo p1, "图片复制成功，正在生成描述文件..."
-
-    invoke-static {p0, p1}, Lcom/bbk/theme/utils/zc;->showToast(Landroid/content/Context;Ljava/lang/String;)V
-
+    :cond_8f
     invoke-static {v1, v0, v0, v4}, Lcom/bbk/theme/utils/ImportThemeHelper;->writeWallpaperInfoFile(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 
     new-instance v6, Lcom/bbk/theme/common/ThemeItem;
@@ -440,10 +416,6 @@
 
     invoke-virtual {v6, v2}, Lcom/bbk/theme/common/ThemeItem;->setCategory(I)V
 
-    const-string/jumbo p1, "开始导入数据库..."
-
-    invoke-static {p0, p1}, Lcom/bbk/theme/utils/zc;->showToast(Landroid/content/Context;Ljava/lang/String;)V
-
     new-instance v0, Lcom/bbk/theme/utils/ImportThemeHelper$1;
 
     invoke-direct {v0, p0, p2, v5, p3}, Lcom/bbk/theme/utils/ImportThemeHelper$1;-><init>(Landroid/content/Context;Lcom/bbk/theme/ResListFragment;Ljava/lang/String;I)V
@@ -458,7 +430,7 @@
 
     return-void
 
-    :cond_dd
+    :cond_b6
     const-string/jumbo p1, "请选择 .itz 资源文件或图片文件"
 
     invoke-static {p0, p1}, Lcom/bbk/theme/utils/zc;->showToast(Landroid/content/Context;Ljava/lang/String;)V
