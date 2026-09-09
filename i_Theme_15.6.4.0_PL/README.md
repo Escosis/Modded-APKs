@@ -1,5 +1,5 @@
 ### 文件说明
-- 本修改版基于酷安大佬 hiahia2333 的底包制作，所以有三个版本：原版，修改版1和修改版2，三个版本的`apk`都在 [Release 页面](https://github.com/Escosis/Modded-APKs/releases)
+- 本修改版基于酷安大佬 hiahia2333 的底包制作，所以有三个版本：原版，修改版1和修改版2，三个版本的`apk`都可以在 [Release 页面](https://github.com/Escosis/Modded-APKs/releases) 找到
 - dex & arsc 文件夹是三个版本的原文件，还是建议使用MT管理器进行比对
 - 但为了更方便地直接在网站中比较 smali 并检验 Release 页面说明的真实性，另设 smali 文件夹，里面包含了三个版本的所有 dex 中被修改过的 smali 文件
 
