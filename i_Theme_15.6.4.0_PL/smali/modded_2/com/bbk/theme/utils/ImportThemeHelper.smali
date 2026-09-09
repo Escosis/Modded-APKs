@@ -390,14 +390,23 @@
 
     move-result v3
 
-    if-eqz v3, :cond_25
+    if-eqz v3, :cond_2e
+
+    if-eq p3, v2, :cond_27
 
     invoke-static {p0, p1, p2, p3}, Lcom/bbk/theme/utils/ImportThemeHelper;->importItzFile(Landroid/content/Context;Landroid/net/Uri;Lcom/bbk/theme/ResListFragment;I)V
 
     return-void
 
-    :cond_25
-    if-ne p3, v2, :cond_2f
+    :cond_27
+    const-string/jumbo p1, "请选择 .itz 资源文件或图片文件"
+
+    invoke-static {p0, p1}, Lcom/bbk/theme/utils/zc;->showToast(Landroid/content/Context;Ljava/lang/String;)V
+
+    return-void
+
+    :cond_2e
+    if-ne p3, v2, :cond_dc
 
     const-string v3, ".jpg"
 
@@ -407,18 +416,18 @@
 
     if-eqz v3, :cond_39
 
-    :cond_2f
-    if-ne p3, v2, :cond_d4
+    goto :goto_41
 
+    :cond_39
     const-string v3, ".png"
 
     invoke-virtual {v1, v3}, Ljava/lang/String;->endsWith(Ljava/lang/String;)Z
 
-    move-result v1
+    move-result v3
 
-    if-nez v1, :cond_d4
+    if-eqz v3, :cond_dc
 
-    :cond_39
+    :goto_41
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v3
@@ -427,7 +436,7 @@
 
     move-result-object v1
 
-    if-eqz v6, :cond_55
+    if-eqz v6, :cond_5d
 
     move-object v3, v6
 
@@ -437,7 +446,7 @@
 
     move-result v4
 
-    if-lez v4, :cond_52
+    if-lez v4, :cond_5a
 
     const/4 v5, 0x0
 
@@ -445,17 +454,17 @@
 
     move-result-object v0
 
-    goto :goto_53
+    goto :goto_5b
 
-    :cond_52
+    :cond_5a
     move-object v0, v3
 
-    :goto_53
+    :goto_5b
     move-object v3, v0
 
-    goto :goto_6e
+    goto :goto_76
 
-    :cond_55
+    :cond_5d
     new-instance v3, Ljava/io/File;
 
     invoke-direct {v3, v0}, Ljava/io/File;-><init>(Ljava/lang/String;)V
@@ -472,21 +481,21 @@
 
     const/4 v4, 0x0
 
-    if-lez v0, :cond_6c
+    if-lez v0, :cond_74
 
     invoke-virtual {v3, v4, v0}, Ljava/lang/String;->substring(II)Ljava/lang/String;
 
     move-result-object v0
 
-    goto :goto_6d
+    goto :goto_75
 
-    :cond_6c
+    :cond_74
     move-object v0, v3
 
-    :goto_6d
+    :goto_75
     move-object v3, v0
 
-    :goto_6e
+    :goto_76
     invoke-static {v1, v3}, Lp5/i;->generateWallpaperName(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v5
@@ -535,7 +544,7 @@
 
     move-result p1
 
-    if-nez p1, :cond_ad
+    if-nez p1, :cond_b5
 
     const-string/jumbo p1, "复制壁纸失败，请检查权限和存储空间"
 
@@ -543,7 +552,7 @@
 
     return-void
 
-    :cond_ad
+    :cond_b5
     invoke-static {v1, v3, v3, v7}, Lcom/bbk/theme/utils/ImportThemeHelper;->writeWallpaperInfoFile(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 
     new-instance v0, Lcom/bbk/theme/common/ThemeItem;
@@ -574,8 +583,8 @@
 
     return-void
 
-    :cond_d4
-    const-string/jumbo p1, "请选择 .itz 资源文件或图片文件"
+    :cond_dc
+    const-string/jumbo p1, "请选择合适扩展名的文件（静态壁纸需png/jpg，其他均需itz）"
 
     invoke-static {p0, p1}, Lcom/bbk/theme/utils/zc;->showToast(Landroid/content/Context;Ljava/lang/String;)V
 
