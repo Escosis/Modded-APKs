@@ -188,46 +188,144 @@
     return v0
 .end method
 
-.method private static importItzFile(Landroid/content/Context;Landroid/net/Uri;Lcom/bbk/theme/ResListFragment;I)V
-    .registers 10
+.method private static getFileNameFromUri(Landroid/content/Context;Landroid/net/Uri;)Ljava/lang/String;
+    .registers 9
 
-    invoke-virtual {p1}, Landroid/net/Uri;->getPath()Ljava/lang/String;
+    const/4 v0, 0x0
 
-    move-result-object v0
+    if-eqz p1, :cond_3d
 
-    new-instance v1, Ljava/io/File;
+    if-nez p0, :cond_6
 
-    invoke-direct {v1, v0}, Ljava/io/File;-><init>(Ljava/lang/String;)V
+    goto :goto_3d
 
-    invoke-virtual {v1}, Ljava/io/File;->getName()Ljava/lang/String;
-
-    move-result-object v0
-
-    invoke-static {}, Lcom/bbk/theme/utils/o8;->getInstance()Lcom/bbk/theme/utils/o8;
+    :cond_6
+    invoke-virtual {p1}, Landroid/net/Uri;->getScheme()Ljava/lang/String;
 
     move-result-object v1
 
-    invoke-virtual {v1, p3}, Lcom/bbk/theme/utils/o8;->getResSavePath(I)Ljava/lang/String;
+    const-string v2, "file"
+
+    invoke-virtual {v2, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_17
+
+    invoke-virtual {p1}, Landroid/net/Uri;->getLastPathSegment()Ljava/lang/String;
+
+    move-result-object p0
+
+    return-object p0
+
+    :cond_17
+    invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v1
 
-    new-instance v2, Ljava/lang/StringBuilder;
+    const/4 p0, 0x1
 
-    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+    new-array v3, p0, [Ljava/lang/String;
 
-    invoke-virtual {v2, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    const-string p0, "_display_name"
 
-    invoke-virtual {v2, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    const/4 v4, 0x0
 
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    aput-object p0, v3, v4
 
-    move-result-object v0
+    const/4 v5, 0x0
 
-    invoke-static {p0, p1, v0}, Lcom/bbk/theme/utils/ImportThemeHelper;->copyFile(Landroid/content/Context;Landroid/net/Uri;Ljava/lang/String;)Z
+    const/4 v6, 0x0
+
+    move-object v2, p1
+
+    invoke-virtual/range {v1 .. v6}, Landroid/content/ContentResolver;->query(Landroid/net/Uri;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;)Landroid/database/Cursor;
+
+    move-result-object p0
+
+    if-eqz p0, :cond_38
+
+    invoke-interface {p0}, Landroid/database/Cursor;->moveToFirst()Z
 
     move-result p1
 
-    if-nez p1, :cond_31
+    if-eqz p1, :cond_38
+
+    const/4 v4, 0x0
+
+    invoke-interface {p0, v4}, Landroid/database/Cursor;->getString(I)Ljava/lang/String;
+
+    move-result-object p1
+
+    goto :goto_39
+
+    :cond_38
+    const/4 p1, 0x0
+
+    :goto_39
+    invoke-static {p0}, Lcom/bbk/theme/utils/ce;->closeSilently(Landroid/database/Cursor;)V
+
+    return-object p1
+
+    :cond_3d
+    :goto_3d
+    const/4 p0, 0x0
+
+    return-object p0
+.end method
+
+.method private static importItzFile(Landroid/content/Context;Landroid/net/Uri;Lcom/bbk/theme/ResListFragment;I)V
+    .registers 10
+
+    invoke-static {p0, p1}, Lcom/bbk/theme/utils/ImportThemeHelper;->getFileNameFromUri(Landroid/content/Context;Landroid/net/Uri;)Ljava/lang/String;
+
+    move-result-object v0
+
+    if-eqz v0, :cond_8
+
+    move-object v1, v0
+
+    goto :goto_15
+
+    :cond_8
+    invoke-virtual {p1}, Landroid/net/Uri;->getPath()Ljava/lang/String;
+
+    move-result-object v1
+
+    new-instance v2, Ljava/io/File;
+
+    invoke-direct {v2, v1}, Ljava/io/File;-><init>(Ljava/lang/String;)V
+
+    invoke-virtual {v2}, Ljava/io/File;->getName()Ljava/lang/String;
+
+    move-result-object v1
+
+    :goto_15
+    invoke-static {}, Lcom/bbk/theme/utils/o8;->getInstance()Lcom/bbk/theme/utils/o8;
+
+    move-result-object v2
+
+    invoke-virtual {v2, p3}, Lcom/bbk/theme/utils/o8;->getResSavePath(I)Ljava/lang/String;
+
+    move-result-object v2
+
+    new-instance v3, Ljava/lang/StringBuilder;
+
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+
+    invoke-virtual {v3, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v3, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-static {p0, p1, v1}, Lcom/bbk/theme/utils/ImportThemeHelper;->copyFile(Landroid/content/Context;Landroid/net/Uri;Ljava/lang/String;)Z
+
+    move-result p1
+
+    if-nez p1, :cond_39
 
     const-string/jumbo p1, "复制文件失败，请检查权限"
 
@@ -235,10 +333,10 @@
 
     return-void
 
-    :cond_31
+    :cond_39
     new-instance p1, Lcom/bbk/theme/utils/ImportThemeHelper$1;
 
-    invoke-direct {p1, p0, p2, v0, p3}, Lcom/bbk/theme/utils/ImportThemeHelper$1;-><init>(Landroid/content/Context;Lcom/bbk/theme/ResListFragment;Ljava/lang/String;I)V
+    invoke-direct {p1, p0, p2, v1, p3}, Lcom/bbk/theme/utils/ImportThemeHelper$1;-><init>(Landroid/content/Context;Lcom/bbk/theme/ResListFragment;Ljava/lang/String;I)V
 
     invoke-static {}, Lcom/bbk/theme/utils/sc;->getInstance()Lcom/bbk/theme/utils/sc;
 
@@ -250,23 +348,37 @@
 .end method
 
 .method public static importTheme(Landroid/content/Context;Landroid/net/Uri;Lcom/bbk/theme/ResListFragment;I)V
-    .registers 15
+    .registers 16
 
     if-nez p1, :cond_3
 
     return-void
 
     :cond_3
+    invoke-static {p0, p1}, Lcom/bbk/theme/utils/ImportThemeHelper;->getFileNameFromUri(Landroid/content/Context;Landroid/net/Uri;)Ljava/lang/String;
+
+    move-result-object v6
+
     invoke-virtual {p1}, Landroid/net/Uri;->getPath()Ljava/lang/String;
 
     move-result-object v0
 
-    if-nez v0, :cond_a
+    if-nez v0, :cond_e
 
     return-void
 
-    :cond_a
-    invoke-virtual {v0}, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+    :cond_e
+    if-eqz v6, :cond_12
+
+    move-object v1, v6
+
+    goto :goto_13
+
+    :cond_12
+    move-object v1, v0
+
+    :goto_13
+    invoke-virtual {v1}, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
 
     move-result-object v1
 
@@ -278,35 +390,35 @@
 
     move-result v3
 
-    if-eqz v3, :cond_1c
+    if-eqz v3, :cond_25
 
     invoke-static {p0, p1, p2, p3}, Lcom/bbk/theme/utils/ImportThemeHelper;->importItzFile(Landroid/content/Context;Landroid/net/Uri;Lcom/bbk/theme/ResListFragment;I)V
 
     return-void
 
-    :cond_1c
-    if-ne p3, v2, :cond_26
+    :cond_25
+    if-ne p3, v2, :cond_2f
 
-    const-string v1, ".jpg"
+    const-string v3, ".jpg"
 
-    invoke-virtual {v0, v1}, Ljava/lang/String;->endsWith(Ljava/lang/String;)Z
+    invoke-virtual {v1, v3}, Ljava/lang/String;->endsWith(Ljava/lang/String;)Z
+
+    move-result v3
+
+    if-eqz v3, :cond_39
+
+    :cond_2f
+    if-ne p3, v2, :cond_d4
+
+    const-string v3, ".png"
+
+    invoke-virtual {v1, v3}, Ljava/lang/String;->endsWith(Ljava/lang/String;)Z
 
     move-result v1
 
-    if-nez v1, :cond_30
+    if-nez v1, :cond_d4
 
-    :cond_26
-    if-ne p3, v2, :cond_b6
-
-    const-string v1, ".png"
-
-    invoke-virtual {v0, v1}, Ljava/lang/String;->endsWith(Ljava/lang/String;)Z
-
-    move-result v1
-
-    if-eqz v1, :cond_b6
-
-    :cond_30
+    :cond_39
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v3
@@ -315,6 +427,35 @@
 
     move-result-object v1
 
+    if-eqz v6, :cond_55
+
+    move-object v3, v6
+
+    const-string v4, "."
+
+    invoke-virtual {v3, v4}, Ljava/lang/String;->lastIndexOf(Ljava/lang/String;)I
+
+    move-result v4
+
+    if-lez v4, :cond_52
+
+    const/4 v5, 0x0
+
+    invoke-virtual {v3, v5, v4}, Ljava/lang/String;->substring(II)Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_53
+
+    :cond_52
+    move-object v0, v3
+
+    :goto_53
+    move-object v3, v0
+
+    goto :goto_6e
+
+    :cond_55
     new-instance v3, Ljava/io/File;
 
     invoke-direct {v3, v0}, Ljava/io/File;-><init>(Ljava/lang/String;)V
@@ -331,67 +472,70 @@
 
     const/4 v4, 0x0
 
-    if-lez v0, :cond_4f
+    if-lez v0, :cond_6c
 
     invoke-virtual {v3, v4, v0}, Ljava/lang/String;->substring(II)Ljava/lang/String;
 
     move-result-object v0
 
-    goto :goto_50
+    goto :goto_6d
 
-    :cond_4f
+    :cond_6c
     move-object v0, v3
 
-    :goto_50
-    invoke-static {v1, v0}, Lp5/i;->generateWallpaperName(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    :goto_6d
+    move-object v3, v0
 
-    move-result-object v3
-
-    invoke-static {}, Lcom/bbk/theme/utils/o8;->getInstance()Lcom/bbk/theme/utils/o8;
-
-    move-result-object v4
-
-    invoke-virtual {v4, v2}, Lcom/bbk/theme/utils/o8;->getResSavePath(I)Ljava/lang/String;
-
-    move-result-object v4
-
-    new-instance v5, Ljava/lang/StringBuilder;
-
-    invoke-direct {v5}, Ljava/lang/StringBuilder;-><init>()V
-
-    invoke-virtual {v5, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v5, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v5}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    :goto_6e
+    invoke-static {v1, v3}, Lp5/i;->generateWallpaperName(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v5
 
-    new-instance v6, Ljava/lang/StringBuilder;
+    invoke-static {}, Lcom/bbk/theme/utils/o8;->getInstance()Lcom/bbk/theme/utils/o8;
 
-    invoke-direct {v6}, Ljava/lang/StringBuilder;-><init>()V
+    move-result-object v0
 
-    invoke-virtual {v6, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v0, v2}, Lcom/bbk/theme/utils/o8;->getResSavePath(I)Ljava/lang/String;
 
-    const-string v4, ".jpg"
+    move-result-object v0
 
-    const-string v7, ""
+    new-instance v4, Ljava/lang/StringBuilder;
 
-    invoke-virtual {v3, v4, v7}, Ljava/lang/String;->replace(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;
+    invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
+
+    invoke-virtual {v4, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v4
 
-    invoke-virtual {v6, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    new-instance v7, Ljava/lang/StringBuilder;
 
-    invoke-virtual {v6}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-direct {v7}, Ljava/lang/StringBuilder;-><init>()V
 
-    move-result-object v4
+    invoke-virtual {v7, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-static {p0, p1, v5}, Lcom/bbk/theme/utils/ImportThemeHelper;->copyWallpaperImage(Landroid/content/Context;Landroid/net/Uri;Ljava/lang/String;)Z
+    const-string v0, ".jpg"
+
+    const-string v8, ""
+
+    invoke-virtual {v5, v0, v8}, Ljava/lang/String;->replace(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-virtual {v7, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v7}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v7
+
+    invoke-static {p0, p1, v4}, Lcom/bbk/theme/utils/ImportThemeHelper;->copyWallpaperImage(Landroid/content/Context;Landroid/net/Uri;Ljava/lang/String;)Z
 
     move-result p1
 
-    if-nez p1, :cond_8f
+    if-nez p1, :cond_ad
 
     const-string/jumbo p1, "复制壁纸失败，请检查权限和存储空间"
 
@@ -399,38 +543,38 @@
 
     return-void
 
-    :cond_8f
-    invoke-static {v1, v0, v0, v4}, Lcom/bbk/theme/utils/ImportThemeHelper;->writeWallpaperInfoFile(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+    :cond_ad
+    invoke-static {v1, v3, v3, v7}, Lcom/bbk/theme/utils/ImportThemeHelper;->writeWallpaperInfoFile(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 
-    new-instance v6, Lcom/bbk/theme/common/ThemeItem;
+    new-instance v0, Lcom/bbk/theme/common/ThemeItem;
 
-    invoke-direct {v6}, Lcom/bbk/theme/common/ThemeItem;-><init>()V
+    invoke-direct {v0}, Lcom/bbk/theme/common/ThemeItem;-><init>()V
 
-    invoke-virtual {v6, v1}, Lcom/bbk/theme/common/ThemeItem;->setPackageId(Ljava/lang/String;)V
+    invoke-virtual {v0, v1}, Lcom/bbk/theme/common/ThemeItem;->setPackageId(Ljava/lang/String;)V
 
-    invoke-virtual {v6, v0}, Lcom/bbk/theme/common/ThemeItem;->setResId(Ljava/lang/String;)V
+    invoke-virtual {v0, v3}, Lcom/bbk/theme/common/ThemeItem;->setResId(Ljava/lang/String;)V
 
-    invoke-virtual {v6, v5}, Lcom/bbk/theme/common/ThemeItem;->setPath(Ljava/lang/String;)V
+    invoke-virtual {v0, v4}, Lcom/bbk/theme/common/ThemeItem;->setPath(Ljava/lang/String;)V
 
-    invoke-virtual {v6, v0}, Lcom/bbk/theme/common/ThemeItem;->setName(Ljava/lang/String;)V
+    invoke-virtual {v0, v3}, Lcom/bbk/theme/common/ThemeItem;->setName(Ljava/lang/String;)V
 
-    invoke-virtual {v6, v2}, Lcom/bbk/theme/common/ThemeItem;->setCategory(I)V
+    invoke-virtual {v0, v2}, Lcom/bbk/theme/common/ThemeItem;->setCategory(I)V
 
-    new-instance v0, Lcom/bbk/theme/utils/ImportThemeHelper$1;
+    new-instance v2, Lcom/bbk/theme/utils/ImportThemeHelper$1;
 
-    invoke-direct {v0, p0, p2, v5, p3}, Lcom/bbk/theme/utils/ImportThemeHelper$1;-><init>(Landroid/content/Context;Lcom/bbk/theme/ResListFragment;Ljava/lang/String;I)V
+    invoke-direct {v2, p0, p2, v4, p3}, Lcom/bbk/theme/utils/ImportThemeHelper$1;-><init>(Landroid/content/Context;Lcom/bbk/theme/ResListFragment;Ljava/lang/String;I)V
 
-    invoke-virtual {v0, v6}, Lcom/bbk/theme/utils/ImportThemeHelper$1;->setThemeItem(Lcom/bbk/theme/common/ThemeItem;)V
+    invoke-virtual {v2, v0}, Lcom/bbk/theme/utils/ImportThemeHelper$1;->setThemeItem(Lcom/bbk/theme/common/ThemeItem;)V
 
     invoke-static {}, Lcom/bbk/theme/utils/sc;->getInstance()Lcom/bbk/theme/utils/sc;
 
     move-result-object p0
 
-    invoke-virtual {p0, v0}, Lcom/bbk/theme/utils/sc;->postRunnable(Ljava/lang/Runnable;)V
+    invoke-virtual {p0, v2}, Lcom/bbk/theme/utils/sc;->postRunnable(Ljava/lang/Runnable;)V
 
     return-void
 
-    :cond_b6
+    :cond_d4
     const-string/jumbo p1, "请选择 .itz 资源文件或图片文件"
 
     invoke-static {p0, p1}, Lcom/bbk/theme/utils/zc;->showToast(Landroid/content/Context;Ljava/lang/String;)V
