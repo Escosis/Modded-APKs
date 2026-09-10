@@ -2,7 +2,7 @@
 - 本修改版修改了 classes.dex 和 AndroidManifest.xml，两个文件夹里分别有原版和修改版的`dex`，提取的修改过的`smali`和反编译后的`xml`
 
 ### 修改日志
-## `b0/b.smali` — 类名 `Lb0/b;`
+- `b0/b.smali` — 类名 `Lb0/b;`
 
 **方法**：`f([Ljava/lang/Void;)Lcom/bbk/updater/bean/UpdateCheckResultInfo;`
 
@@ -33,7 +33,7 @@
 
 ---
 
-## `b0/a.smali` — 类名 `Lb0/a;`
+- `b0/a.smali` — 类名 `Lb0/a;`
 
 **方法**：`o(Lcom/bbk/updater/bean/UpdateCheckResultInfo;)V`
 
@@ -52,7 +52,7 @@
 
 ---
 
-## `AndroidManifest.xml`
+- `AndroidManifest.xml`
 
 **改动 4 处**：
 
