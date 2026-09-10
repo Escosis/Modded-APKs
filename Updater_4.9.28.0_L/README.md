@@ -3,6 +3,9 @@
 
 ### 修改日志
 - 以下为修改的地方：
+
+---
+
 ### `b0/b.smali`
 
 **方法**：`f([Ljava/lang/Void;)Lcom/bbk/updater/bean/UpdateCheckResultInfo;`
@@ -32,6 +35,8 @@
 
 **作用**：不发送检查更新的网络请求，直接返回"已最新"。
 
+---
+
 ### `b0/a.smali`
 
 **方法**：`o(Lcom/bbk/updater/bean/UpdateCheckResultInfo;)V`
@@ -48,6 +53,8 @@
 ```
 
 **作用**：修复 `DSStrategy.onCheckEnd` 因 `e` 为 null 触发的 `String.hashCode()` 空指针闪退。
+
+---
 
 ### `AndroidManifest.xml`
 
