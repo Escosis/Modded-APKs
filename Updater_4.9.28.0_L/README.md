@@ -12,7 +12,7 @@
 
 ---
 
-### `b0/b.smali`
+### 修改`b0/b.smali`
 
 **方法**：`f([Ljava/lang/Void;)Lcom/bbk/updater/bean/UpdateCheckResultInfo;`
 
@@ -43,7 +43,7 @@
 
 ---
 
-### `b0/a.smali`
+### 修改`b0/a.smali`
 
 **方法**：`o(Lcom/bbk/updater/bean/UpdateCheckResultInfo;)V`
 
@@ -62,7 +62,7 @@
 
 ---
 
-### `AndroidManifest.xml`
+### 修改`AndroidManifest.xml`
 
 **改动**：
 - `BootCompleteReceiver`、`RefreshTimerReceiver`、`AllReceivers` 添加 `android:enabled="false"`；
@@ -98,6 +98,6 @@
 
 ---
 
-### 版本和版本号（直接使用 Apktool M 编辑的）分别改为 9.9.99.9 和 999999999
+### 修改版本和版本号（直接使用 Apktool M 编辑的），分别改为 9.9.99.9 和 999999999
 
 **作用**：感觉用处不大（
