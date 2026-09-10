@@ -6,7 +6,7 @@
 
 ---
 
-### 将从 /system/app/Updater 中提取的 lib 文件夹（子文件夹需要从 arm64 重命名为 arm64-v8a）放入提取的apk
+### 将从 /system/app/Updater 中提取的 lib 文件夹（子文件夹需要从 arm64 重命名为 arm64-v8a）放入提取的`apk`
 
 **作用**：防止缺少库导致安装失败
 
