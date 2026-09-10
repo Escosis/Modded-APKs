@@ -6,6 +6,12 @@
 
 ---
 
+### 将从 /system/app/Updater 中提取的 lib 文件夹（子文件夹需要从 arm64 重命名为 arm64-v8a）放入提取的apk
+
+**作用**：防止缺少库导致安装失败
+
+---
+
 ### `b0/b.smali`
 
 **方法**：`f([Ljava/lang/Void;)Lcom/bbk/updater/bean/UpdateCheckResultInfo;`
@@ -92,4 +98,6 @@
 
 ---
 
-### 版本号（直接使用 Apktool M 编辑的）改为 9.9.99.9 和 999999999，不过感觉没太大用（
+### 版本和版本号（直接使用 Apktool M 编辑的）分别改为 9.9.99.9 和 999999999
+
+**作用**：感觉用处不大（
