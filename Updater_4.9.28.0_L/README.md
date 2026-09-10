@@ -2,7 +2,7 @@
 - 本修改版修改了 classes.dex 和 AndroidManifest.xml，两个文件夹里分别有原版和修改版的`dex`，提取的修改过的`smali`和反编译后的`xml`
 
 ### 修改日志
-- `b0/b.smali` — 类名 `Lb0/b;`
+#### `b0/b.smali`
 
 **方法**：`f([Ljava/lang/Void;)Lcom/bbk/updater/bean/UpdateCheckResultInfo;`
 
@@ -29,19 +29,17 @@
 .end method
 ```
 
-**作用**：不发网络，直接返回"已最新"。
+**作用**：不发送检查更新的网络请求，直接返回"已最新"。
 
----
-
-- `b0/a.smali` — 类名 `Lb0/a;`
+#### `b0/a.smali`
 
 **方法**：`o(Lcom/bbk/updater/bean/UpdateCheckResultInfo;)V`
 
-**改动**：找到这一行：
+**改动**：在这一行：
 ```smali
     iget-object v11, p0, Lb0/a;->e:Ljava/lang/String;
 ```
-在它**下方紧接着**插入：
+下方紧接着插入：
 ```smali
     if-nez v11, :cond_e_not_null
     const-string v11, "result_n"
@@ -50,13 +48,10 @@
 
 **作用**：修复 `DSStrategy.onCheckEnd` 因 `e` 为 null 触发的 `String.hashCode()` 空指针闪退。
 
----
+#### `AndroidManifest.xml`
 
-- `AndroidManifest.xml`
-
-**改动 4 处**：
-
-### a) `BootCompleteReceiver` 加 `android:enabled="false"`
+**改动**：
+- `BootCompleteReceiver`、`RefreshTimerReceiver`、`AllReceivers` 添加 `android:enabled="false"`；
 ```xml
 <receiver
     android:name="com.bbk.updater.receiver.BootCompleteReceiver"
@@ -64,8 +59,6 @@
     android:enabled="false"
     android:exported="true">
 ```
-
-### b) `RefreshTimerReceiver` 加 `android:enabled="false"`
 ```xml
 <receiver
     android:name="com.bbk.updater.remote.RefreshTimerReceiver"
@@ -74,8 +67,6 @@
     android:exported="true"
     android:process=":remote">
 ```
-
-### c) `AllReceivers` 加 `android:enabled="false"`
 ```xml
 <receiver
     android:name="com.bbk.updater.receiver.AllReceivers"
@@ -84,7 +75,7 @@
     android:exported="true">
 ```
 
-### d) 删除整行
+- 删除整行
 ```xml
 <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 ```
