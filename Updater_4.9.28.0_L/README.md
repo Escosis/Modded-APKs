@@ -12,7 +12,7 @@
 
 ---
 
-### 修改`b0/b.smali`
+### 修改 `b0/b.smali`
 
 **方法**：`f([Ljava/lang/Void;)Lcom/bbk/updater/bean/UpdateCheckResultInfo;`
 
@@ -43,7 +43,7 @@
 
 ---
 
-### 修改`b0/a.smali`
+### 修改 `b0/a.smali`
 
 **方法**：`o(Lcom/bbk/updater/bean/UpdateCheckResultInfo;)V`
 
@@ -62,7 +62,7 @@
 
 ---
 
-### 修改`AndroidManifest.xml`
+### 修改 `AndroidManifest.xml`
 
 **改动**：
 - `BootCompleteReceiver`、`RefreshTimerReceiver`、`AllReceivers` 添加 `android:enabled="false"`；
