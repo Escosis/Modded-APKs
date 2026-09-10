@@ -41231,7 +41231,7 @@
     .line 6
     move-result p0
 
-    const/4 v0, 0x1
+    const/4 v0, 0x0
 
     .line 7
     return v0
