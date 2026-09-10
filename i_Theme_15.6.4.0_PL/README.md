@@ -5,7 +5,7 @@
 
 ### 修改日志
 _hiahia2333 大佬的修改部分：_
-- （解锁会员）修改 com.bbk.theme.tryuse.b1 类的 gotoTryuseDialog 方法和 com.bbk.theme.utils.ThemeUtils 的 isTryuseRes 方法，允许试用所有主题
+- （解锁会员）修改 com.bbk.theme.tryuse.b1 类的 gotoTryuseDialog 方法和 com.bbk.theme.utils.ThemeUtils 的 isTryuseRes 方法，允许应用所有主题
 - （解锁会员）修改 com.bbk.theme.task.MemberInformationQuery$MemberData 类的 getVipLevel、isActivated、isValid 三个方法，允许下载会员免费的主题
 - （体验优化）修改内部版本号为较大数字，去除更新提示
 
@@ -18,8 +18,7 @@ _本人的修改部分（这应该算得上是一种本地化罢）：_
 
 ### 其他提醒
 - 该版本的文件选择器已支持从文件选择器的”下载“”最近“等页选择文件，并且支持无 key 文件的`itz`主题包导入
-- 大佬的修改解锁会导致所有主题的应用都显示试用，但这与真正的应用无区别
-- 字体等格式的会员资源仅能下载却依然无法正常试用，解决方法是：按以下路径找到下载的`itz`文件，导出后进入压缩包，删除 key 文件后再从文件选择器导入
+- 如遇到会员资源下载后无法正常试用的情况，解决方法是：按以下路径找到下载的`itz`文件，导出后进入压缩包，删除 key 文件后再从文件选择器导入
 - i主题保存主题的路径为/data/bbkcore/theme/.dwd/c/o/m/b/b/k/t/h/e/m/e/`<最后一级文件夹名>`/，如果是非机主用户则是/data/bbkcore/theme/`<用户id>`/.dwd/c/o/m/b/b/k/t/h/e/m/e/`<最后一级文件夹名>`/，最后一级文件夹名与内容的类型有关，对照表如下，可用于应用导入行为异常时的纠错参考，以及从商店中下载的主题的编辑与导出：
 
 | resType | 类型名称 | 官方常量名 | 文件夹名 | 修改版中是否可导入 |
