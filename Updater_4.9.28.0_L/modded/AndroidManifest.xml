@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.bbk.updater"
-    platformBuildVersionCode="36"
-    platformBuildVersionName="16"
     android:versionCode="999999999"
     android:versionName="9.9.99.9"
     android:compileSdkVersion="36"
-    android:compileSdkVersionCodename="16">
+    android:compileSdkVersionCodename="16"
+    package="com.bbk.updater"
+    platformBuildVersionCode="36"
+    platformBuildVersionName="16">
     <uses-sdk
         android:minSdkVersion="29"
         android:targetSdkVersion="35"/>
@@ -524,9 +524,6 @@
             android:name="vivo.build.version.support.v2"
             android:value="true"/>
         <meta-data
-            android:name="support.super.process"
-            android:value="31|13"/>
-        <meta-data
             android:name="com.vivo.vcode.moduleId"
             android:value="A742"/>
         <meta-data
@@ -544,6 +541,7 @@
             android:initOrder="99999"/>
         <provider
             android:name="com.bbk.updater.provider.RemoteContentProvider"
+            android:enabled="false"
             android:exported="false"
             android:process=":remote"
             android:authorities="com.vivo.updater.remote"/>

@@ -65,7 +65,7 @@
 ### 修改 `AndroidManifest.xml`
 
 **改动**：
-- `BootCompleteReceiver`、`RefreshTimerReceiver`、`AllReceivers` 添加 `android:enabled="false"`；
+- 为`BootCompleteReceiver`、`RefreshTimerReceiver`、`AllReceivers`和`RemoteContentProvider` 添加 `android:enabled="false"`；
 ```xml
 <receiver
     android:name="com.bbk.updater.receiver.BootCompleteReceiver"
@@ -88,13 +88,26 @@
     android:enabled="false"
     android:exported="true">
 ```
+```xml
+<provider
+    android:name="com.bbk.updater.provider.RemoteContentProvider"
+    android:enabled="false"
+    android:exported="false"
+    android:process=":remote"
+    android:authorities="com.vivo.updater.remote"/>
+```
 
 - 删除整行
 ```xml
 <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 ```
+```xml
+<meta-data
+    android:name="support.super.process"
+    android:value="31|13"/>
+```
 
-**作用**：禁开机启动、定时唤醒、充电/锁屏触发。
+**作用**：禁用开机启动、定时唤醒、充电/锁屏触发，以及 vivo 超级进程等的主动拉起（目前仅在打开设置时会启动）。
 
 ---
 
