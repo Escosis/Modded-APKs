@@ -15,6 +15,7 @@ _本人的修改部分（这应该算得上是一种本地化罢）：_
 - （本地化）修改 com.bbk.theme.ResListFragmentLocal 类的 updateLocalBottomView 方法，使在线模式关闭时不显示“开启在线内容服务”按钮而仍显示被劫持的“更多...”按钮，从而更加合理地支持本地导入
 - （体验优化）修改 resources.arsc 中的数个字符串，使被劫持的按键都改为显示“导入本地...”（因本人比较懒所以只修改了简中、香港繁中、台湾繁中、英文、日文五个语言的字符串）
 - （体验优化）修改 com.bbk.theme.utils.sa 的 parseResItzFile(Ljava/lang/String;IZZZZZ) 方法，删除由于 key 检验导致 ThemeItem 被置空，从而产生的`itz`解析失败（实际上删除了一行 const/4 v10, 0x0），并相应调整日志
+- （体验优化）使用MT管理器注入文件提供器，并为其新增对 /data/bbkcore 目录的读写支持（在MT管理器中显示为 data_bbkcore 目录），使得可以在无 ROOT 权限的情况下读写该目录，便于主题编辑与导出（文件路径详见其他提醒部分）
 
 ### 其他提醒
 - 该版本的文件选择器已支持从文件选择器的”下载“”最近“等页选择文件，并且支持无 key 文件的`itz`主题包导入
@@ -42,4 +43,4 @@ _本人的修改部分（这应该算得上是一种本地化罢）：_
 
 - 对于平板和折叠屏设备：针对平板设备，应用使用了独立的 PadResListFragmentLocal 类，其 leftBtnClick 方法在按钮为常规“更多”文本时会主动回调父类逻辑；针对折叠屏设备，则使用了 FlipResListFragmentLocal 类，其并未重写该方法，直接继承自父类。因此，本次对父类 ResListFragmentLocal 中点击逻辑的修改，会通过上述继承关系自然覆盖这两类设备，无需额外适配即可理论支持，如有问题可以提 issue 进行说明。
 - 下载下来的内容文件的权限是777，而修改版导入的是600（不影响应用与删除等逻辑），可以用于区分（实则是懒得写改权限的代码了）
-- 使用临时 ROOT 安装的修改版主题在重启掉 ROOT 后依然可用
+- 使用临时 ROOT 安装的修改版主题在重启掉 ROOT 后依然可用，且可以使用MT管理器等访问并修改上面所说的目录（使用方法详见 [MT管理器 - 注入文件提供器](https://mt2.cn/guide/reverse/inject-documents-provider.html)）
