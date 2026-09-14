@@ -302,6 +302,7 @@
         <provider
             android:name="com.bbk.updater.ui.SuggestionStateProvider"
             android:permission="com.bbk.updater.permission.USE_COMPONENT"
+            android:enabled="false"
             android:exported="true"
             android:process=":remote"
             android:authorities="com.bbk.updater.provider.suggestion">
@@ -535,6 +536,7 @@
             android:authorities="com.bbk.updater.provider"/>
         <provider
             android:name="com.vivo.ic.dm.DownloadProvider"
+            android:enabled="false"
             android:exported="false"
             android:process=":remote"
             android:authorities="com.bbk.updater.ICDM"
@@ -552,15 +554,7 @@
             android:process="com.bbk.updater.search"
             android:multiprocess="false"
             android:authorities="com.bbk.updater"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="com.android.settings.search.data_build_mode"
-                android:value="1"/>
-            <intent-filter>
-                <action
-                    android:name="android.content.action.SEARCH_INDEXABLES_PROVIDER"/>
-            </intent-filter>
-        </provider>
+            android:grantUriPermissions="true"/>
         <provider
             android:name="androidx.core.content.FileProvider"
             android:exported="false"
@@ -638,6 +632,7 @@
         <receiver
             android:name="com.bbk.updater.receiver.NetworkReceiver"
             android:permission="com.bbk.updater.permission.NetWorkReceiver"
+            android:enabled="false"
             android:exported="true">
             <intent-filter
                 android:priority="1000">
@@ -648,6 +643,7 @@
         <receiver
             android:name="com.bbk.updater.receiver.ScreenActionRecorder"
             android:permission="com.bbk.updater.permission.ScreenActionRecorder"
+            android:enabled="false"
             android:exported="true">
             <intent-filter>
                 <action
@@ -785,6 +781,7 @@
         </receiver>
         <receiver
             android:name="com.bbk.updater.cota.CotaStatusChangeReceiver"
+            android:enabled="false"
             android:exported="true">
             <intent-filter>
                 <action
@@ -871,6 +868,7 @@
         <service
             android:name="com.bbk.updater.remote.RemoteService"
             android:permission="com.bbk.updater.permission.USE_COMPONENT"
+            android:enabled="false"
             android:exported="true"
             android:process=":remote">
             <intent-filter>

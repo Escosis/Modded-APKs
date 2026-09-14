@@ -6,13 +6,13 @@
 
 ---
 
-### 将从 /system/app/Updater 中提取的 lib 文件夹（子文件夹需要从 arm64 重命名为 arm64-v8a）放入提取的`apk`
+#### 将从 /system/app/Updater 中提取的 lib 文件夹（子文件夹需要从 arm64 重命名为 arm64-v8a）放入提取的`apk`
 
 **作用**：防止缺少库导致安装失败
 
 ---
 
-### 修改 `b0/b.smali`
+#### 修改 `b0/b.smali`
 
 **方法**：`f([Ljava/lang/Void;)Lcom/bbk/updater/bean/UpdateCheckResultInfo;`
 
@@ -43,7 +43,7 @@
 
 ---
 
-### 修改 `b0/a.smali`
+#### 修改 `b0/a.smali`
 
 **方法**：`o(Lcom/bbk/updater/bean/UpdateCheckResultInfo;)V`
 
@@ -62,10 +62,10 @@
 
 ---
 
-### 修改 `AndroidManifest.xml`
+#### 修改 `AndroidManifest.xml`
 
 **改动**：
-- 为`BootCompleteReceiver`、`RefreshTimerReceiver`、`AllReceivers`和`RemoteContentProvider` 添加 `android:enabled="false"`；
+- 为`BootCompleteReceiver`、`RefreshTimerReceiver`、`AllReceivers`、`RemoteContentProvider`、`SuggestionStateProvider`、`DownloadProvider` 、`NetworkReceiver`、`ScreenActionRecorder`、`CotaStatusChangeReceiver`、`RemoteService` 添加 `android:enabled="false"`，以下为一个示例：
 ```xml
 <receiver
     android:name="com.bbk.updater.receiver.BootCompleteReceiver"
@@ -73,44 +73,44 @@
     android:enabled="false"
     android:exported="true">
 ```
-```xml
-<receiver
-    android:name="com.bbk.updater.remote.RefreshTimerReceiver"
-    android:permission="com.bbk.updater.permission.USE_COMPONENT"
-    android:enabled="false"
-    android:exported="true"
-    android:process=":remote">
-```
-```xml
-<receiver
-    android:name="com.bbk.updater.receiver.AllReceivers"
-    android:permission="com.bbk.updater.permission.USE_COMPONENT"
-    android:enabled="false"
-    android:exported="true">
-```
-```xml
-<provider
-    android:name="com.bbk.updater.provider.RemoteContentProvider"
-    android:enabled="false"
-    android:exported="false"
-    android:process=":remote"
-    android:authorities="com.vivo.updater.remote"/>
-```
+
 
 - 删除整行
 ```xml
+<!-- 删除 -->
 <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 ```
 ```xml
+<!-- 删除 -->
 <meta-data
     android:name="support.super.process"
     android:value="31|13"/>
 ```
+```xml
+<provider
+    android:name="com.bbk.updater.search.UpdaterSearchIndexablesProvider"
+    android:permission="android.permission.READ_SEARCH_INDEXABLES"
+    android:exported="true"
+    android:process="com.bbk.updater.search"
+    android:multiprocess="false"
+    android:authorities="com.bbk.updater"
+    android:grantUriPermissions="true">
+    <!-- 需删除部分开始 -->
+    <meta-data
+        android:name="com.android.settings.search.data_build_mode"
+        android:value="1"/>
+    <intent-filter>
+        <action
+            android:name="android.content.action.SEARCH_INDEXABLES_PROVIDER"/>
+    </intent-filter>
+    <!-- 需删除部分结束 -->
+</provider>
+```
 
-**作用**：禁用开机启动、定时唤醒、充电/锁屏触发，以及 vivo 超级进程等的主动拉起（目前仅在打开设置时会启动）。
+**作用**：禁用一切形式（大概）的非用户拉起。
 
 ---
 
-### 修改版本和版本号（直接使用 Apktool M 编辑的），分别改为 9.9.99.9 和 999999999
+#### 修改版本和版本号（直接使用 Apktool M 编辑的），分别改为 9.9.99.9 和 999999999
 
 **作用**：感觉用处不大（
