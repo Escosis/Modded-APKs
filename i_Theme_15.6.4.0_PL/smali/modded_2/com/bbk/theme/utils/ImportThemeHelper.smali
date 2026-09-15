@@ -26,7 +26,7 @@
 
     move-result-object v1
 
-    const-string v2, "font_template/description.xml"
+    const-string/jumbo v2, "template/description.xml"
 
     invoke-virtual {v1, v2}, Landroid/content/res/AssetManager;->open(Ljava/lang/String;)Ljava/io/InputStream;
 
@@ -40,20 +40,20 @@
 
     new-array v3, v3, [B
 
-    :goto_14
+    :goto_15
     invoke-virtual {v1, v3}, Ljava/io/InputStream;->read([B)I
 
     move-result v4
 
-    if-lez v4, :cond_1f
+    if-lez v4, :cond_20
 
     const/4 v5, 0x0
 
     invoke-virtual {v2, v3, v5, v4}, Ljava/io/ByteArrayOutputStream;->write([BII)V
 
-    goto :goto_14
+    goto :goto_15
 
-    :cond_1f
+    :cond_20
     invoke-virtual {v1}, Ljava/io/InputStream;->close()V
 
     invoke-virtual {v2}, Ljava/io/ByteArrayOutputStream;->toByteArray()[B
@@ -66,96 +66,196 @@
 
     invoke-direct {v2, v1, v3}, Ljava/lang/String;-><init>([BLjava/lang/String;)V
 
-    const-string v1, "<id>"
+    const-string v3, "<id>"
 
-    invoke-virtual {v2, v1}, Ljava/lang/String;->indexOf(Ljava/lang/String;)I
-
-    move-result v3
-
-    if-ltz v3, :cond_5a
-
-    add-int/lit8 v4, v3, 0x4
-
-    const-string v1, "</id>"
-
-    invoke-virtual {v2, v1, v4}, Ljava/lang/String;->indexOf(Ljava/lang/String;I)I
-
-    move-result v5
-
-    if-ltz v5, :cond_5a
-
-    new-instance v6, Ljava/lang/StringBuilder;
-
-    invoke-direct {v6}, Ljava/lang/StringBuilder;-><init>()V
-
-    const/4 v7, 0x0
-
-    invoke-virtual {v2, v7, v4}, Ljava/lang/String;->substring(II)Ljava/lang/String;
-
-    move-result-object v8
-
-    invoke-virtual {v6, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v6, p3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v2, v5}, Ljava/lang/String;->substring(I)Ljava/lang/String;
-
-    move-result-object v8
-
-    invoke-virtual {v6, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v6}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v2
-
-    :cond_5a
-    const-string v1, "<title locale=\"zh_CN\"><![CDATA["
-
-    invoke-virtual {v2, v1}, Ljava/lang/String;->indexOf(Ljava/lang/String;)I
-
-    move-result v3
-
-    if-ltz v3, :cond_8a
-
-    invoke-virtual {v1}, Ljava/lang/String;->length()I
+    invoke-virtual {v2, v3}, Ljava/lang/String;->indexOf(Ljava/lang/String;)I
 
     move-result v4
 
-    add-int/2addr v4, v3
+    if-ltz v4, :cond_5b
 
-    const-string v1, "]]></title>"
+    add-int/lit8 v4, v4, 0x4
 
-    invoke-virtual {v2, v1, v4}, Ljava/lang/String;->indexOf(Ljava/lang/String;I)I
+    const-string v3, "</id>"
+
+    invoke-virtual {v2, v3, v4}, Ljava/lang/String;->indexOf(Ljava/lang/String;I)I
 
     move-result v5
 
-    if-ltz v5, :cond_8a
+    if-ltz v5, :cond_5b
 
-    new-instance v6, Ljava/lang/StringBuilder;
+    new-instance v3, Ljava/lang/StringBuilder;
 
-    invoke-direct {v6}, Ljava/lang/StringBuilder;-><init>()V
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
 
-    const/4 v7, 0x0
+    const/4 v6, 0x0
 
-    invoke-virtual {v2, v7, v4}, Ljava/lang/String;->substring(II)Ljava/lang/String;
+    invoke-virtual {v2, v6, v4}, Ljava/lang/String;->substring(II)Ljava/lang/String;
 
-    move-result-object v8
+    move-result-object v7
 
-    invoke-virtual {v6, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v3, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v6, p4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v3, p3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     invoke-virtual {v2, v5}, Ljava/lang/String;->substring(I)Ljava/lang/String;
 
-    move-result-object v8
+    move-result-object v7
 
-    invoke-virtual {v6, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v3, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v6}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v2
 
-    :cond_8a
+    :cond_5b
+    const-string v3, "<id3>"
+
+    invoke-virtual {v2, v3}, Ljava/lang/String;->indexOf(Ljava/lang/String;)I
+
+    move-result v4
+
+    if-ltz v4, :cond_88
+
+    add-int/lit8 v4, v4, 0x5
+
+    const-string v3, "</id3>"
+
+    invoke-virtual {v2, v3, v4}, Ljava/lang/String;->indexOf(Ljava/lang/String;I)I
+
+    move-result v5
+
+    if-ltz v5, :cond_88
+
+    new-instance v3, Ljava/lang/StringBuilder;
+
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+
+    const/4 v6, 0x0
+
+    invoke-virtual {v2, v6, v4}, Ljava/lang/String;->substring(II)Ljava/lang/String;
+
+    move-result-object v7
+
+    invoke-virtual {v3, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v3, p3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v2, v5}, Ljava/lang/String;->substring(I)Ljava/lang/String;
+
+    move-result-object v7
+
+    invoke-virtual {v3, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    :cond_88
+    new-instance v3, Ljava/lang/StringBuilder;
+
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v4, "4"
+
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v3, p3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v3
+
+    const-string v4, "<uid>"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->indexOf(Ljava/lang/String;)I
+
+    move-result v5
+
+    if-ltz v5, :cond_c6
+
+    add-int/lit8 v5, v5, 0x5
+
+    const-string v4, "</uid>"
+
+    invoke-virtual {v2, v4, v5}, Ljava/lang/String;->indexOf(Ljava/lang/String;I)I
+
+    move-result v6
+
+    if-ltz v6, :cond_c6
+
+    new-instance v4, Ljava/lang/StringBuilder;
+
+    invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
+
+    const/4 v7, 0x0
+
+    invoke-virtual {v2, v7, v5}, Ljava/lang/String;->substring(II)Ljava/lang/String;
+
+    move-result-object v8
+
+    invoke-virtual {v4, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v4, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v2, v6}, Ljava/lang/String;->substring(I)Ljava/lang/String;
+
+    move-result-object v8
+
+    invoke-virtual {v4, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    :cond_c6
+    const-string v3, "<title locale=\"zh_CN\"><![CDATA["
+
+    invoke-virtual {v2, v3}, Ljava/lang/String;->indexOf(Ljava/lang/String;)I
+
+    move-result v4
+
+    if-ltz v4, :cond_f6
+
+    invoke-virtual {v3}, Ljava/lang/String;->length()I
+
+    move-result v3
+
+    add-int/2addr v4, v3
+
+    const-string v3, "]]></title>"
+
+    invoke-virtual {v2, v3, v4}, Ljava/lang/String;->indexOf(Ljava/lang/String;I)I
+
+    move-result v5
+
+    if-ltz v5, :cond_f6
+
+    new-instance v3, Ljava/lang/StringBuilder;
+
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+
+    const/4 v6, 0x0
+
+    invoke-virtual {v2, v6, v4}, Ljava/lang/String;->substring(II)Ljava/lang/String;
+
+    move-result-object v7
+
+    invoke-virtual {v3, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v3, p4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v2, v5}, Ljava/lang/String;->substring(I)Ljava/lang/String;
+
+    move-result-object v7
+
+    invoke-virtual {v3, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    :cond_f6
     new-instance v1, Ljava/io/FileOutputStream;
 
     invoke-direct {v1, p2}, Ljava/io/FileOutputStream;-><init>(Ljava/io/File;)V
@@ -218,20 +318,20 @@
 
     new-array v4, v4, [B
 
-    :goto_d4
+    :goto_140
     invoke-virtual {v1, v4}, Ljava/io/InputStream;->read([B)I
 
     move-result v5
 
-    if-lez v5, :cond_df
+    if-lez v5, :cond_14b
 
     const/4 v6, 0x0
 
     invoke-virtual {v3, v4, v6, v5}, Ljava/util/zip/ZipOutputStream;->write([BII)V
 
-    goto :goto_d4
+    goto :goto_140
 
-    :cond_df
+    :cond_14b
     invoke-virtual {v1}, Ljava/io/InputStream;->close()V
 
     invoke-virtual {v3}, Ljava/util/zip/ZipOutputStream;->closeEntry()V
@@ -239,17 +339,341 @@
     invoke-virtual {v3}, Ljava/util/zip/ZipOutputStream;->close()V
 
     const/4 v0, 0x1
-    :try_end_e9
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_e9} :catch_ea
+    :try_end_155
+    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_155} :catch_156
 
     return v0
 
-    :catch_ea
+    :catch_156
     move-exception v1
 
     const-string v2, "ImportThemeHelper"
 
     const-string/jumbo v3, "生成字体itz失败: "
+
+    invoke-static {v2, v3, v1}, Lcom/bbk/theme/utils/s2;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)V
+
+    return v0
+.end method
+
+.method private static buildLiveWallpaperItzFromTemplate(Landroid/content/Context;Landroid/net/Uri;Ljava/io/File;Ljava/lang/String;Ljava/lang/String;)Z
+    .registers 16
+
+    const/4 v0, 0x0
+
+    :try_start_1
+    invoke-virtual {p0}, Landroid/content/Context;->getAssets()Landroid/content/res/AssetManager;
+
+    move-result-object v1
+
+    const-string/jumbo v2, "template/description.xml"
+
+    invoke-virtual {v1, v2}, Landroid/content/res/AssetManager;->open(Ljava/lang/String;)Ljava/io/InputStream;
+
+    move-result-object v1
+
+    new-instance v2, Ljava/io/ByteArrayOutputStream;
+
+    invoke-direct {v2}, Ljava/io/ByteArrayOutputStream;-><init>()V
+
+    const/16 v3, 0x400
+
+    new-array v3, v3, [B
+
+    :goto_15
+    invoke-virtual {v1, v3}, Ljava/io/InputStream;->read([B)I
+
+    move-result v4
+
+    if-lez v4, :cond_20
+
+    const/4 v5, 0x0
+
+    invoke-virtual {v2, v3, v5, v4}, Ljava/io/ByteArrayOutputStream;->write([BII)V
+
+    goto :goto_15
+
+    :cond_20
+    invoke-virtual {v1}, Ljava/io/InputStream;->close()V
+
+    invoke-virtual {v2}, Ljava/io/ByteArrayOutputStream;->toByteArray()[B
+
+    move-result-object v1
+
+    new-instance v2, Ljava/lang/String;
+
+    const-string v3, "UTF-8"
+
+    invoke-direct {v2, v1, v3}, Ljava/lang/String;-><init>([BLjava/lang/String;)V
+
+    const-string v3, "<id>"
+
+    invoke-virtual {v2, v3}, Ljava/lang/String;->indexOf(Ljava/lang/String;)I
+
+    move-result v4
+
+    if-ltz v4, :cond_5b
+
+    add-int/lit8 v4, v4, 0x4
+
+    const-string v3, "</id>"
+
+    invoke-virtual {v2, v3, v4}, Ljava/lang/String;->indexOf(Ljava/lang/String;I)I
+
+    move-result v5
+
+    if-ltz v5, :cond_5b
+
+    new-instance v3, Ljava/lang/StringBuilder;
+
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+
+    const/4 v6, 0x0
+
+    invoke-virtual {v2, v6, v4}, Ljava/lang/String;->substring(II)Ljava/lang/String;
+
+    move-result-object v7
+
+    invoke-virtual {v3, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v3, p3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v2, v5}, Ljava/lang/String;->substring(I)Ljava/lang/String;
+
+    move-result-object v7
+
+    invoke-virtual {v3, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    :cond_5b
+    const-string v3, "<id3>"
+
+    invoke-virtual {v2, v3}, Ljava/lang/String;->indexOf(Ljava/lang/String;)I
+
+    move-result v4
+
+    if-ltz v4, :cond_88
+
+    add-int/lit8 v4, v4, 0x5
+
+    const-string v3, "</id3>"
+
+    invoke-virtual {v2, v3, v4}, Ljava/lang/String;->indexOf(Ljava/lang/String;I)I
+
+    move-result v5
+
+    if-ltz v5, :cond_88
+
+    new-instance v3, Ljava/lang/StringBuilder;
+
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+
+    const/4 v6, 0x0
+
+    invoke-virtual {v2, v6, v4}, Ljava/lang/String;->substring(II)Ljava/lang/String;
+
+    move-result-object v7
+
+    invoke-virtual {v3, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v3, p3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v2, v5}, Ljava/lang/String;->substring(I)Ljava/lang/String;
+
+    move-result-object v7
+
+    invoke-virtual {v3, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    :cond_88
+    new-instance v3, Ljava/lang/StringBuilder;
+
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v4, "2"
+
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v3, p3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v3
+
+    const-string v4, "<uid>"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->indexOf(Ljava/lang/String;)I
+
+    move-result v5
+
+    if-ltz v5, :cond_c6
+
+    add-int/lit8 v5, v5, 0x5
+
+    const-string v4, "</uid>"
+
+    invoke-virtual {v2, v4, v5}, Ljava/lang/String;->indexOf(Ljava/lang/String;I)I
+
+    move-result v6
+
+    if-ltz v6, :cond_c6
+
+    new-instance v4, Ljava/lang/StringBuilder;
+
+    invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
+
+    const/4 v7, 0x0
+
+    invoke-virtual {v2, v7, v5}, Ljava/lang/String;->substring(II)Ljava/lang/String;
+
+    move-result-object v8
+
+    invoke-virtual {v4, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v4, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v2, v6}, Ljava/lang/String;->substring(I)Ljava/lang/String;
+
+    move-result-object v8
+
+    invoke-virtual {v4, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    :cond_c6
+    const-string v3, "<title locale=\"zh_CN\"><![CDATA["
+
+    invoke-virtual {v2, v3}, Ljava/lang/String;->indexOf(Ljava/lang/String;)I
+
+    move-result v4
+
+    if-ltz v4, :cond_f6
+
+    invoke-virtual {v3}, Ljava/lang/String;->length()I
+
+    move-result v3
+
+    add-int/2addr v4, v3
+
+    const-string v3, "]]></title>"
+
+    invoke-virtual {v2, v3, v4}, Ljava/lang/String;->indexOf(Ljava/lang/String;I)I
+
+    move-result v5
+
+    if-ltz v5, :cond_f6
+
+    new-instance v3, Ljava/lang/StringBuilder;
+
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+
+    const/4 v6, 0x0
+
+    invoke-virtual {v2, v6, v4}, Ljava/lang/String;->substring(II)Ljava/lang/String;
+
+    move-result-object v7
+
+    invoke-virtual {v3, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v3, p4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v2, v5}, Ljava/lang/String;->substring(I)Ljava/lang/String;
+
+    move-result-object v7
+
+    invoke-virtual {v3, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    :cond_f6
+    new-instance v1, Ljava/io/FileOutputStream;
+
+    invoke-direct {v1, p2}, Ljava/io/FileOutputStream;-><init>(Ljava/io/File;)V
+
+    new-instance v3, Ljava/util/zip/ZipOutputStream;
+
+    invoke-direct {v3, v1}, Ljava/util/zip/ZipOutputStream;-><init>(Ljava/io/OutputStream;)V
+
+    new-instance v1, Ljava/util/zip/ZipEntry;
+
+    const-string v4, "description.xml"
+
+    invoke-direct {v1, v4}, Ljava/util/zip/ZipEntry;-><init>(Ljava/lang/String;)V
+
+    invoke-virtual {v3, v1}, Ljava/util/zip/ZipOutputStream;->putNextEntry(Ljava/util/zip/ZipEntry;)V
+
+    const-string v4, "UTF-8"
+
+    invoke-virtual {v2, v4}, Ljava/lang/String;->getBytes(Ljava/lang/String;)[B
+
+    move-result-object v4
+
+    invoke-virtual {v3, v4}, Ljava/util/zip/ZipOutputStream;->write([B)V
+
+    invoke-virtual {v3}, Ljava/util/zip/ZipOutputStream;->closeEntry()V
+
+    new-instance v1, Ljava/util/zip/ZipEntry;
+
+    const-string v4, "livewallpaper/video_livewallpaper.mp4"
+
+    invoke-direct {v1, v4}, Ljava/util/zip/ZipEntry;-><init>(Ljava/lang/String;)V
+
+    invoke-virtual {v3, v1}, Ljava/util/zip/ZipOutputStream;->putNextEntry(Ljava/util/zip/ZipEntry;)V
+
+    invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
+
+    move-result-object v1
+
+    invoke-virtual {v1, p1}, Landroid/content/ContentResolver;->openInputStream(Landroid/net/Uri;)Ljava/io/InputStream;
+
+    move-result-object v1
+
+    const/16 v4, 0x800
+
+    new-array v4, v4, [B
+
+    :goto_12c
+    invoke-virtual {v1, v4}, Ljava/io/InputStream;->read([B)I
+
+    move-result v5
+
+    if-lez v5, :cond_137
+
+    const/4 v6, 0x0
+
+    invoke-virtual {v3, v4, v6, v5}, Ljava/util/zip/ZipOutputStream;->write([BII)V
+
+    goto :goto_12c
+
+    :cond_137
+    invoke-virtual {v1}, Ljava/io/InputStream;->close()V
+
+    invoke-virtual {v3}, Ljava/util/zip/ZipOutputStream;->closeEntry()V
+
+    invoke-virtual {v3}, Ljava/util/zip/ZipOutputStream;->close()V
+
+    const/4 v0, 0x1
+    :try_end_141
+    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_141} :catch_142
+
+    return v0
+
+    :catch_142
+    move-exception v1
+
+    const-string v2, "ImportThemeHelper"
+
+    const-string/jumbo v3, "生成动态壁纸itz失败: "
 
     invoke-static {v2, v3, v1}, Lcom/bbk/theme/utils/s2;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)V
 
@@ -734,6 +1158,153 @@
     return-void
 .end method
 
+.method private static importLiveWallpaperFile(Landroid/content/Context;Landroid/net/Uri;Lcom/bbk/theme/ResListFragment;I)V
+    .registers 14
+
+    invoke-static {p0, p1}, Lcom/bbk/theme/utils/ImportThemeHelper;->getFileNameFromUri(Landroid/content/Context;Landroid/net/Uri;)Ljava/lang/String;
+
+    move-result-object v0
+
+    if-eqz v0, :cond_8
+
+    move-object v1, v0
+
+    goto :goto_15
+
+    :cond_8
+    invoke-virtual {p1}, Landroid/net/Uri;->getPath()Ljava/lang/String;
+
+    move-result-object v1
+
+    new-instance v2, Ljava/io/File;
+
+    invoke-direct {v2, v1}, Ljava/io/File;-><init>(Ljava/lang/String;)V
+
+    invoke-virtual {v2}, Ljava/io/File;->getName()Ljava/lang/String;
+
+    move-result-object v1
+
+    :goto_15
+    invoke-virtual {v1}, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+
+    move-result-object v2
+
+    const-string v3, ".mp4"
+
+    invoke-virtual {v2, v3}, Ljava/lang/String;->endsWith(Ljava/lang/String;)Z
+
+    move-result v3
+
+    if-eqz v3, :cond_93
+
+    invoke-virtual {v1}, Ljava/lang/String;->length()I
+
+    move-result v3
+
+    add-int/lit8 v3, v3, -0x4
+
+    const/4 v4, 0x0
+
+    invoke-virtual {v1, v4, v3}, Ljava/lang/String;->substring(II)Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-static {}, Lcom/bbk/theme/utils/o8;->getInstance()Lcom/bbk/theme/utils/o8;
+
+    move-result-object v3
+
+    invoke-virtual {v3, p3}, Lcom/bbk/theme/utils/o8;->getResSavePath(I)Ljava/lang/String;
+
+    move-result-object v3
+
+    new-instance v4, Ljava/lang/StringBuilder;
+
+    invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
+
+    invoke-virtual {v4, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v4, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    const-string v5, ".itz"
+
+    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v4
+
+    new-instance v5, Ljava/io/File;
+
+    invoke-direct {v5, v4}, Ljava/io/File;-><init>(Ljava/lang/String;)V
+
+    invoke-virtual {v5}, Ljava/io/File;->exists()Z
+
+    move-result v6
+
+    if-eqz v6, :cond_5a
+
+    const-string/jumbo v6, "已存在同名动态壁纸，请重命名后导入"
+
+    invoke-static {p0, v6}, Lcom/bbk/theme/utils/zc;->showToast(Landroid/content/Context;Ljava/lang/String;)V
+
+    return-void
+
+    :cond_5a
+    invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
+
+    move-result-wide v6
+
+    invoke-static {v6, v7}, Ljava/lang/String;->valueOf(J)Ljava/lang/String;
+
+    move-result-object v5
+
+    invoke-virtual {p0}, Landroid/content/Context;->getCacheDir()Ljava/io/File;
+
+    move-result-object v6
+
+    new-instance v7, Ljava/io/File;
+
+    new-instance v8, Ljava/lang/StringBuilder;
+
+    invoke-direct {v8}, Ljava/lang/StringBuilder;-><init>()V
+
+    invoke-virtual {v8, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    const-string v9, ".itz"
+
+    invoke-virtual {v8, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v8}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v8
+
+    invoke-direct {v7, v6, v8}, Ljava/io/File;-><init>(Ljava/io/File;Ljava/lang/String;)V
+
+    invoke-static {p0, p1, v7, v5, v2}, Lcom/bbk/theme/utils/ImportThemeHelper;->buildLiveWallpaperItzFromTemplate(Landroid/content/Context;Landroid/net/Uri;Ljava/io/File;Ljava/lang/String;Ljava/lang/String;)Z
+
+    move-result v6
+
+    if-nez v6, :cond_89
+
+    const-string/jumbo v6, "生成动态壁纸主题包失败"
+
+    invoke-static {p0, v6}, Lcom/bbk/theme/utils/zc;->showToast(Landroid/content/Context;Ljava/lang/String;)V
+
+    return-void
+
+    :cond_89
+    invoke-static {v7}, Landroid/net/Uri;->fromFile(Ljava/io/File;)Landroid/net/Uri;
+
+    move-result-object v6
+
+    invoke-static {p0, v6, p2, p3}, Lcom/bbk/theme/utils/ImportThemeHelper;->importItzFile(Landroid/content/Context;Landroid/net/Uri;Lcom/bbk/theme/ResListFragment;I)V
+
+    invoke-virtual {v7}, Ljava/io/File;->delete()Z
+
+    :cond_93
+    return-void
+.end method
+
 .method public static importTheme(Landroid/content/Context;Landroid/net/Uri;Lcom/bbk/theme/ResListFragment;I)V
     .registers 16
 
@@ -742,7 +1313,6 @@
     return-void
 
     :cond_3
-    :try_start_3
     new-instance v9, Ljava/lang/StringBuilder;
 
     invoke-direct {v9}, Ljava/lang/StringBuilder;-><init>()V
@@ -752,16 +1322,6 @@
     invoke-virtual {v9, v10}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     invoke-virtual {v9, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    const-string v10, ", scheme="
-
-    invoke-virtual {v9, v10}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {p1}, Landroid/net/Uri;->getScheme()Ljava/lang/String;
-
-    move-result-object v10
-
-    invoke-virtual {v9, v10}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     const-string v10, ", path="
 
@@ -786,15 +1346,7 @@
     const-string v10, "ImportThemeHelper"
 
     invoke-static {v10, v9}, Lcom/bbk/theme/utils/s2;->d(Ljava/lang/String;Ljava/lang/String;)V
-    :try_end_3a
-    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_3a} :catch_3b
 
-    goto :goto_3c
-
-    :catch_3b
-    move-exception v9
-
-    :goto_3c
     invoke-static {p0, p1}, Lcom/bbk/theme/utils/ImportThemeHelper;->getFileNameFromUri(Landroid/content/Context;Landroid/net/Uri;)Ljava/lang/String;
 
     move-result-object v6
@@ -803,7 +1355,7 @@
 
     move-result-object v0
 
-    if-nez v0, :cond_4f
+    if-nez v0, :cond_41
 
     const-string v9, "ImportThemeHelper"
 
@@ -813,48 +1365,24 @@
 
     return-void
 
-    :cond_4f
-    if-eqz v6, :cond_53
+    :cond_41
+    if-eqz v6, :cond_45
 
     move-object v1, v6
 
-    goto :goto_54
+    goto :goto_46
 
-    :cond_53
+    :cond_45
     move-object v1, v0
 
-    :goto_54
+    :goto_46
     invoke-virtual {v1}, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
 
     move-result-object v1
 
-    new-instance v9, Ljava/lang/StringBuilder;
-
-    invoke-direct {v9}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string/jumbo v10, "getFileNameFromUri="
-
-    invoke-virtual {v9, v10}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v9, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    const-string v10, ", checkName="
-
-    invoke-virtual {v9, v10}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v9, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v9}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v9
-
-    const-string v10, "ImportThemeHelper"
-
-    invoke-static {v10, v9}, Lcom/bbk/theme/utils/s2;->d(Ljava/lang/String;Ljava/lang/String;)V
-
     const/4 v2, 0x4
 
-    if-ne p3, v2, :cond_86
+    if-ne p3, v2, :cond_5f
 
     const-string v2, ".ttf"
 
@@ -862,13 +1390,38 @@
 
     move-result v2
 
-    if-eqz v2, :cond_86
+    if-eqz v2, :cond_5f
+
+    const-string/jumbo v2, "正在生成字体主题包，请稍候…"
+
+    invoke-static {p0, v2}, Lcom/bbk/theme/utils/zc;->showToast(Landroid/content/Context;Ljava/lang/String;)V
 
     invoke-static {p0, p1, p2, p3}, Lcom/bbk/theme/utils/ImportThemeHelper;->importFontFile(Landroid/content/Context;Landroid/net/Uri;Lcom/bbk/theme/ResListFragment;I)V
 
     return-void
 
-    :cond_86
+    :cond_5f
+    const/4 v2, 0x2
+
+    if-ne p3, v2, :cond_74
+
+    const-string v2, ".mp4"
+
+    invoke-virtual {v1, v2}, Ljava/lang/String;->endsWith(Ljava/lang/String;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_74
+
+    const-string/jumbo v2, "正在生成动态壁纸主题包，请稍候…"
+
+    invoke-static {p0, v2}, Lcom/bbk/theme/utils/zc;->showToast(Landroid/content/Context;Ljava/lang/String;)V
+
+    invoke-static {p0, p1, p2, p3}, Lcom/bbk/theme/utils/ImportThemeHelper;->importLiveWallpaperFile(Landroid/content/Context;Landroid/net/Uri;Lcom/bbk/theme/ResListFragment;I)V
+
+    return-void
+
+    :cond_74
     const/16 v2, 0x9
 
     const-string v3, ".itz"
@@ -877,26 +1430,16 @@
 
     move-result v3
 
-    if-eqz v3, :cond_ad
+    if-eqz v3, :cond_8d
 
-    const-string v9, "ImportThemeHelper"
-
-    const-string/jumbo v10, "matched .itz branch"
-
-    invoke-static {v9, v10}, Lcom/bbk/theme/utils/s2;->d(Ljava/lang/String;Ljava/lang/String;)V
-
-    if-eq p3, v2, :cond_9e
+    if-eq p3, v2, :cond_84
 
     invoke-static {p0, p1, p2, p3}, Lcom/bbk/theme/utils/ImportThemeHelper;->importItzFile(Landroid/content/Context;Landroid/net/Uri;Lcom/bbk/theme/ResListFragment;I)V
 
     return-void
 
-    :cond_9e
+    :cond_84
     const-string v9, "ImportThemeHelper"
-
-    const-string/jumbo v10, "itz selected but resType==9 (wallpaper), reject"
-
-    invoke-static {v9, v10}, Lcom/bbk/theme/utils/s2;->d(Ljava/lang/String;Ljava/lang/String;)V
 
     const-string/jumbo p1, "静态壁纸请选择 png 或 jpg 图片文件"
 
@@ -904,8 +1447,8 @@
 
     return-void
 
-    :cond_ad
-    if-ne p3, v2, :cond_182
+    :cond_8d
+    if-ne p3, v2, :cond_15a
 
     const-string v3, ".jpg"
 
@@ -913,26 +1456,20 @@
 
     move-result v3
 
-    if-eqz v3, :cond_b8
+    if-eqz v3, :cond_98
 
-    goto :goto_c0
+    goto :goto_a0
 
-    :cond_b8
+    :cond_98
     const-string v3, ".png"
 
     invoke-virtual {v1, v3}, Ljava/lang/String;->endsWith(Ljava/lang/String;)Z
 
     move-result v3
 
-    if-eqz v3, :cond_182
+    if-eqz v3, :cond_15a
 
-    :goto_c0
-    const-string v9, "ImportThemeHelper"
-
-    const-string/jumbo v10, "matched wallpaper branch"
-
-    invoke-static {v9, v10}, Lcom/bbk/theme/utils/s2;->d(Ljava/lang/String;Ljava/lang/String;)V
-
+    :goto_a0
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v3
@@ -941,7 +1478,7 @@
 
     move-result-object v1
 
-    if-eqz v6, :cond_e4
+    if-eqz v6, :cond_bc
 
     move-object v3, v6
 
@@ -951,7 +1488,7 @@
 
     move-result v4
 
-    if-lez v4, :cond_e1
+    if-lez v4, :cond_b9
 
     const/4 v5, 0x0
 
@@ -959,17 +1496,17 @@
 
     move-result-object v0
 
-    goto :goto_e2
+    goto :goto_ba
 
-    :cond_e1
+    :cond_b9
     move-object v0, v3
 
-    :goto_e2
+    :goto_ba
     move-object v3, v0
 
-    goto :goto_fd
+    goto :goto_d5
 
-    :cond_e4
+    :cond_bc
     new-instance v3, Ljava/io/File;
 
     invoke-direct {v3, v0}, Ljava/io/File;-><init>(Ljava/lang/String;)V
@@ -986,21 +1523,21 @@
 
     const/4 v4, 0x0
 
-    if-lez v0, :cond_fb
+    if-lez v0, :cond_d3
 
     invoke-virtual {v3, v4, v0}, Ljava/lang/String;->substring(II)Ljava/lang/String;
 
     move-result-object v0
 
-    goto :goto_fc
+    goto :goto_d4
 
-    :cond_fb
+    :cond_d3
     move-object v0, v3
 
-    :goto_fc
+    :goto_d4
     move-object v3, v0
 
-    :goto_fd
+    :goto_d5
     invoke-static {v1, v3}, Lp5/i;->generateWallpaperName(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v5
@@ -1073,7 +1610,7 @@
 
     move-result p1
 
-    if-nez p1, :cond_15b
+    if-nez p1, :cond_133
 
     const-string/jumbo p1, "复制壁纸失败，请检查权限和存储空间"
 
@@ -1081,7 +1618,7 @@
 
     return-void
 
-    :cond_15b
+    :cond_133
     invoke-static {v1, v3, v3, v7}, Lcom/bbk/theme/utils/ImportThemeHelper;->writeWallpaperInfoFile(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 
     new-instance v0, Lcom/bbk/theme/common/ThemeItem;
@@ -1112,7 +1649,7 @@
 
     return-void
 
-    :cond_182
+    :cond_15a
     new-instance v9, Ljava/lang/StringBuilder;
 
     invoke-direct {v9}, Ljava/lang/StringBuilder;-><init>()V
@@ -1149,7 +1686,7 @@
 
     invoke-static {v10, v9}, Lcom/bbk/theme/utils/s2;->d(Ljava/lang/String;Ljava/lang/String;)V
 
-    const-string/jumbo p1, "请选择合适扩展名的文件（静态壁纸需png/jpg，字体需ttf或itz，其他均需itz）"
+    const-string/jumbo p1, "请选择合适扩展名的文件（静态壁纸需png/jpg，字体需ttf或itz，动态壁纸需mp4或itz，其他均需itz）"
 
     invoke-static {p0, p1}, Lcom/bbk/theme/utils/zc;->showToast(Landroid/content/Context;Ljava/lang/String;)V
 
