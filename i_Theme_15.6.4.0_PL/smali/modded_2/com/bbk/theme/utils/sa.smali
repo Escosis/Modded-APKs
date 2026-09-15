@@ -5738,7 +5738,7 @@
 
     move-result-object v10
 
-    if-eqz v10, :cond_71a
+    if-eqz v10, :cond_716
 
     .line 6
     invoke-virtual {v10}, Lcom/bbk/theme/common/ThemeItem;->getPackageId()Ljava/lang/String;
@@ -5751,7 +5751,7 @@
 
     if-eqz v0, :cond_4d
 
-    goto/16 :goto_71a
+    goto/16 :goto_716
 
     .line 7
     :cond_4d
@@ -5759,11 +5759,11 @@
 
     move-result v0
 
-    if-eqz v0, :cond_6f5
+    if-eqz v0, :cond_6f1
 
     if-eqz v3, :cond_57
 
-    goto/16 :goto_6f5
+    goto/16 :goto_6f1
 
     :cond_57
     const-string v0, "description.xml"
@@ -6094,9 +6094,9 @@
 
     const-string v5, ","
 
-    if-eqz v0, :cond_68d
+    if-eqz v0, :cond_689
 
-    if-nez v3, :cond_68d
+    if-nez v3, :cond_689
 
     const/4 v3, 0x4
 
@@ -6235,13 +6235,8 @@
     invoke-static {v9, v0}, Lcom/bbk/theme/utils/s2;->d(Ljava/lang/String;Ljava/lang/String;)V
 
     :cond_1b9
-    if-eqz v6, :cond_680
+    goto/16 :goto_67c
 
-    if-eqz v10, :cond_680
-
-    if-eqz v4, :cond_680
-
-    .line 49
     invoke-virtual {v4}, Lcom/bbk/theme/payment/entry/RuleEntry;->getDigest()Ljava/lang/String;
 
     move-result-object v3
@@ -6250,25 +6245,23 @@
 
     const-string v8, ""
 
-    if-ne v2, v0, :cond_1cb
+    if-ne v2, v0, :cond_1c7
 
     move-object v12, v8
 
-    goto :goto_1cf
+    goto :goto_1cb
 
-    .line 50
-    :cond_1cb
+    :cond_1c7
     invoke-virtual {v4}, Lcom/bbk/theme/payment/entry/RuleEntry;->getDigest2()Ljava/lang/String;
 
     move-result-object v12
 
-    .line 51
-    :goto_1cf
+    :goto_1cb
     invoke-virtual {v8, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v13
 
-    if-eqz v13, :cond_1dd
+    if-eqz v13, :cond_1d9
 
     move-object/from16 v21, v4
 
@@ -6278,36 +6271,33 @@
 
     const/4 v15, 0x1
 
-    goto/16 :goto_61d
+    goto/16 :goto_619
 
-    .line 52
-    :cond_1dd
+    :cond_1d9
     invoke-virtual {v3, v5}, Ljava/lang/String;->split(Ljava/lang/String;)[Ljava/lang/String;
 
     move-result-object v13
 
-    .line 53
     invoke-static {v11}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
     move-result v14
 
-    if-nez v14, :cond_214
+    if-nez v14, :cond_210
 
     const/4 v14, 0x1
 
-    if-eq v2, v14, :cond_1ed
+    if-eq v2, v14, :cond_1e9
 
     const/4 v15, 0x4
 
-    if-ne v2, v15, :cond_214
+    if-ne v2, v15, :cond_210
 
-    .line 54
-    :cond_1ed
+    :cond_1e9
     array-length v15, v13
 
     const/4 v14, 0x2
 
-    if-ne v15, v14, :cond_20f
+    if-ne v15, v14, :cond_20b
 
     const/4 v14, 0x0
 
@@ -6317,92 +6307,86 @@
 
     move-result v14
 
-    if-eqz v14, :cond_20f
+    if-eqz v14, :cond_20b
 
     const/4 v14, 0x1
 
     aget-object v13, v13, v14
 
-    .line 55
     invoke-static {v13, v11}, Landroid/text/TextUtils;->equals(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Z
 
     move-result v13
 
-    if-eqz v13, :cond_20f
+    if-eqz v13, :cond_20b
 
-    if-ne v2, v14, :cond_20a
+    if-ne v2, v14, :cond_206
 
     const-string v13, "whole"
 
-    .line 56
     invoke-virtual {v10, v13}, Lcom/bbk/theme/common/ThemeItem;->setThemeStyle(Ljava/lang/String;)V
 
-    :cond_20a
-    :goto_20a
+    :cond_206
+    :goto_206
     const/4 v1, 0x1
 
     const/4 v14, 0x0
 
     const/16 v18, 0x0
 
-    goto :goto_25f
+    goto :goto_25b
 
-    :cond_20f
+    :cond_20b
     const/4 v1, 0x0
 
     const/4 v14, 0x0
 
     const/16 v18, 0x1
 
-    goto :goto_25f
+    goto :goto_25b
 
-    .line 57
-    :cond_214
+    :cond_210
     invoke-static {v11}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
     move-result v14
 
-    if-nez v14, :cond_234
+    if-nez v14, :cond_230
 
     invoke-static {v12}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
     move-result v14
 
-    if-nez v14, :cond_234
+    if-nez v14, :cond_230
 
     array-length v14, v13
 
     const/4 v15, 0x1
 
-    if-lt v14, v15, :cond_234
+    if-lt v14, v15, :cond_230
 
     const/4 v14, 0x0
 
-    .line 58
     aget-object v13, v13, v14
 
     invoke-static {v13, v7}, Landroid/text/TextUtils;->equals(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Z
 
     move-result v13
 
-    if-eqz v13, :cond_20f
+    if-eqz v13, :cond_20b
 
-    .line 59
     invoke-static {v12, v11}, Landroid/text/TextUtils;->equals(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Z
 
     move-result v13
 
-    if-eqz v13, :cond_20f
+    if-eqz v13, :cond_20b
 
-    goto :goto_20a
+    goto :goto_206
 
-    .line 60
-    :cond_234
+    :cond_230
     array-length v14, v13
 
     const/4 v15, 0x1
 
-    if-ne v14, v15, :cond_245
+    if-ne v14, v15, :cond_241
 
     const/4 v14, 0x0
 
@@ -6412,25 +6396,24 @@
 
     move-result v15
 
-    if-eqz v15, :cond_246
+    if-eqz v15, :cond_242
 
-    :goto_241
+    :goto_23d
     move/from16 v18, v14
 
     const/4 v1, 0x1
 
-    goto :goto_25f
+    goto :goto_25b
 
-    :cond_245
+    :cond_241
     const/4 v14, 0x0
 
-    .line 61
-    :cond_246
+    :cond_242
     array-length v15, v13
 
     const/4 v1, 0x2
 
-    if-ne v15, v1, :cond_25c
+    if-ne v15, v1, :cond_258
 
     aget-object v1, v13, v14
 
@@ -6438,56 +6421,52 @@
 
     move-result v1
 
-    if-eqz v1, :cond_25c
+    if-eqz v1, :cond_258
 
     const/4 v1, 0x1
 
     aget-object v13, v13, v1
 
-    .line 62
     invoke-static {v13, v11}, Landroid/text/TextUtils;->equals(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Z
 
     move-result v1
 
-    if-eqz v1, :cond_25c
+    if-eqz v1, :cond_258
 
-    goto :goto_241
+    goto :goto_23d
 
-    :cond_25c
+    :cond_258
     move v1, v14
 
     move/from16 v18, v1
 
-    .line 63
-    :goto_25f
-    :try_start_25f
+    :goto_25b
+    :try_start_25b
     invoke-virtual {v4}, Lcom/bbk/theme/payment/entry/RuleEntry;->getDigest3()Ljava/util/LinkedHashMap;
 
     move-result-object v13
 
-    if-nez v13, :cond_267
+    if-nez v13, :cond_263
 
     const/4 v15, -0x1
 
-    goto :goto_26b
+    goto :goto_267
 
-    .line 64
-    :cond_267
+    :cond_263
     invoke-virtual {v13}, Ljava/util/AbstractMap;->size()I
 
     move-result v15
 
-    .line 65
-    :goto_26b
+    :goto_267
     new-instance v14, Ljava/lang/StringBuilder;
-    :try_end_26d
-    .catch Ljava/lang/Exception; {:try_start_25f .. :try_end_26d} :catch_60b
+    :try_end_269
+    .catch Ljava/lang/Exception; {:try_start_25b .. :try_end_269} :catch_607
 
     move/from16 p5, v1
 
     move-object/from16 v1, v20
 
-    :try_start_271
+    :try_start_26d
     invoke-direct {v14, v1}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
 
     invoke-static {}, Lcom/bbk/theme/utils/ThemeUtils;->getDigest3ChecksTrategy()I
@@ -6524,7 +6503,6 @@
 
     invoke-virtual {v14, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 66
     invoke-virtual {v10}, Lcom/bbk/theme/common/ThemeItem;->getName()Ljava/lang/String;
 
     move-result-object v0
@@ -6535,55 +6513,49 @@
 
     move-result-object v0
 
-    .line 67
     invoke-static {v9, v0}, Lcom/bbk/theme/utils/s2;->v(Ljava/lang/String;Ljava/lang/String;)V
 
     const/4 v14, 0x1
 
-    if-ne v2, v14, :cond_48d
+    if-ne v2, v14, :cond_489
 
-    if-eqz v1, :cond_48d
+    if-eqz v1, :cond_489
 
-    .line 68
     invoke-static {}, Lcom/bbk/theme/utils/ThemeUtils;->getDigest3ChecksTrategy()I
 
     move-result v0
 
-    if-lez v0, :cond_48d
+    if-lez v0, :cond_489
 
-    if-lez v15, :cond_48d
+    if-lez v15, :cond_489
 
-    .line 69
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v15
 
-    .line 70
     invoke-static/range {p1 .. p1}, Lcom/bbk/theme/utils/sa;->combineOwnCollectionEncryptionList(Ljava/lang/String;)Ljava/util/Map;
 
     move-result-object v0
 
-    .line 71
     invoke-interface {v0}, Ljava/util/Map;->keySet()Ljava/util/Set;
 
     move-result-object v1
-    :try_end_2c5
-    .catch Ljava/lang/Exception; {:try_start_271 .. :try_end_2c5} :catch_486
+    :try_end_2c1
+    .catch Ljava/lang/Exception; {:try_start_26d .. :try_end_2c1} :catch_482
 
-    .line 72
-    :try_start_2c5
+    :try_start_2c1
     invoke-interface {v1}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
 
     move-result-object v1
 
     const/4 v14, 0x0
 
-    :goto_2ca
+    :goto_2c6
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v17
 
-    if-eqz v17, :cond_37f
+    if-eqz v17, :cond_37b
 
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -6595,7 +6567,6 @@
 
     check-cast v1, Ljava/lang/String;
 
-    .line 73
     invoke-interface {v0, v1}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v17
@@ -6606,17 +6577,17 @@
 
     move-result v17
 
-    if-nez v17, :cond_351
+    if-nez v17, :cond_34d
 
     invoke-virtual {v13, v1}, Ljava/util/LinkedHashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v17
-    :try_end_2ea
-    .catch Ljava/lang/Exception; {:try_start_2c5 .. :try_end_2ea} :catch_34b
+    :try_end_2e6
+    .catch Ljava/lang/Exception; {:try_start_2c1 .. :try_end_2e6} :catch_347
 
     move/from16 v20, v6
 
-    :try_start_2ec
+    :try_start_2e8
     move-object/from16 v6, v17
 
     check-cast v6, Ljava/lang/CharSequence;
@@ -6624,12 +6595,12 @@
     invoke-interface {v0, v1}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v17
-    :try_end_2f4
-    .catch Ljava/lang/Exception; {:try_start_2ec .. :try_end_2f4} :catch_347
+    :try_end_2f0
+    .catch Ljava/lang/Exception; {:try_start_2e8 .. :try_end_2f0} :catch_343
 
     move-object/from16 v21, v4
 
-    :try_start_2f6
+    :try_start_2f2
     move-object/from16 v4, v17
 
     check-cast v4, Ljava/lang/CharSequence;
@@ -6638,30 +6609,28 @@
 
     move-result v4
 
-    if-nez v4, :cond_355
+    if-nez v4, :cond_351
 
-    if-nez v14, :cond_30d
+    if-nez v14, :cond_309
 
-    .line 74
     new-instance v14, Lorg/json/JSONObject;
 
     invoke-direct {v14}, Lorg/json/JSONObject;-><init>()V
 
-    goto :goto_30d
+    goto :goto_309
 
-    :catch_308
+    :catch_304
     move-exception v0
 
-    :goto_309
+    :goto_305
     move-object v1, v0
 
     const/4 v0, 0x0
 
-    goto/16 :goto_448
+    goto/16 :goto_444
 
-    .line 75
-    :cond_30d
-    :goto_30d
+    :cond_309
+    :goto_309
     new-instance v4, Ljava/lang/StringBuilder;
 
     invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
@@ -6690,7 +6659,6 @@
 
     invoke-virtual {v14, v1, v4}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
 
-    .line 76
     new-instance v4, Ljava/lang/StringBuilder;
 
     invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
@@ -6711,31 +6679,30 @@
 
     invoke-static {v9, v1}, Lcom/bbk/theme/utils/s2;->v(Ljava/lang/String;Ljava/lang/String;)V
 
-    goto :goto_377
+    goto :goto_373
+
+    :catch_343
+    move-exception v0
+
+    move-object/from16 v21, v4
+
+    goto :goto_305
 
     :catch_347
     move-exception v0
 
     move-object/from16 v21, v4
 
-    goto :goto_309
+    move/from16 v20, v6
 
-    :catch_34b
-    move-exception v0
+    goto :goto_305
 
+    :cond_34d
     move-object/from16 v21, v4
 
     move/from16 v20, v6
-
-    goto :goto_309
 
     :cond_351
-    move-object/from16 v21, v4
-
-    move/from16 v20, v6
-
-    .line 77
-    :cond_355
     new-instance v4, Ljava/lang/StringBuilder;
 
     invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
@@ -6764,21 +6731,20 @@
 
     invoke-static {v9, v1}, Lcom/bbk/theme/utils/s2;->v(Ljava/lang/String;Ljava/lang/String;)V
 
-    :goto_377
+    :goto_373
     move-object/from16 v1, p7
 
     move/from16 v6, v20
 
     move-object/from16 v4, v21
 
-    goto/16 :goto_2ca
+    goto/16 :goto_2c6
 
-    :cond_37f
+    :cond_37b
     move-object/from16 v21, v4
 
     move/from16 v20, v6
 
-    .line 78
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -6809,11 +6775,10 @@
 
     invoke-static {v9, v1}, Lcom/bbk/theme/utils/s2;->v(Ljava/lang/String;Ljava/lang/String;)V
 
-    if-eqz v14, :cond_436
+    if-eqz v14, :cond_432
 
     const-string v1, "appversion"
 
-    .line 79
     invoke-static {}, Lcom/bbk/theme/utils/ThemeUtils;->getAppVersionCode()I
 
     move-result v4
@@ -6822,7 +6787,6 @@
 
     const-string v1, "resId"
 
-    .line 80
     invoke-virtual {v10}, Lcom/bbk/theme/common/ThemeItem;->getResId()Ljava/lang/String;
 
     move-result-object v4
@@ -6831,7 +6795,6 @@
 
     const-string v1, "packageId"
 
-    .line 81
     invoke-virtual {v10}, Lcom/bbk/theme/common/ThemeItem;->getPackageId()Ljava/lang/String;
 
     move-result-object v4
@@ -6840,7 +6803,6 @@
 
     const-string v1, "name"
 
-    .line 82
     invoke-virtual {v10}, Lcom/bbk/theme/common/ThemeItem;->getName()Ljava/lang/String;
 
     move-result-object v4
@@ -6849,7 +6811,6 @@
 
     const-string v1, "digest3"
 
-    .line 83
     invoke-virtual {v13}, Ljava/lang/Object;->toString()Ljava/lang/String;
 
     move-result-object v4
@@ -6858,7 +6819,6 @@
 
     const-string v1, "digest3Local"
 
-    .line 84
     invoke-virtual {v0}, Ljava/lang/Object;->toString()Ljava/lang/String;
 
     move-result-object v0
@@ -6867,7 +6827,6 @@
 
     const-string v0, "path"
 
-    .line 85
     invoke-virtual {v10}, Lcom/bbk/theme/common/ThemeItem;->getPath()Ljava/lang/String;
 
     move-result-object v1
@@ -6876,7 +6835,6 @@
 
     const-string v0, "edition"
 
-    .line 86
     invoke-virtual {v10}, Lcom/bbk/theme/common/ThemeItem;->getEdition()I
 
     move-result v1
@@ -6885,14 +6843,12 @@
 
     const-string v0, "filesize"
 
-    .line 87
     invoke-virtual {v10}, Lcom/bbk/theme/common/ThemeItem;->getSize()Ljava/lang/String;
 
     move-result-object v1
 
     invoke-virtual {v14, v0, v1}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
 
-    .line 88
     invoke-virtual {v10}, Lcom/bbk/theme/common/ThemeItem;->getResId()Ljava/lang/String;
 
     move-result-object v0
@@ -6905,7 +6861,6 @@
 
     invoke-static {v0, v1}, Lcom/bbk/theme/utils/t;->setDownLoadVerifyResult(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 89
     new-instance v0, Lcom/bbk/theme/task/GetAbnormalMonitoringReportTask;
 
     invoke-virtual {v14}, Lorg/json/JSONObject;->toString()Ljava/lang/String;
@@ -6916,7 +6871,6 @@
 
     invoke-direct {v0, v4, v1}, Lcom/bbk/theme/task/GetAbnormalMonitoringReportTask;-><init>(ILjava/lang/String;)V
 
-    .line 90
     invoke-static {}, Lcom/bbk/theme/utils/sc;->getInstance()Lcom/bbk/theme/utils/sc;
 
     move-result-object v1
@@ -6927,7 +6881,6 @@
 
     invoke-virtual {v1, v0, v4}, Lcom/bbk/theme/utils/sc;->postTask(Landroid/os/AsyncTask;[Ljava/lang/Object;)Z
 
-    .line 91
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -6947,16 +6900,15 @@
     move-result-object v0
 
     invoke-static {v9, v0}, Lcom/bbk/theme/utils/s2;->v(Ljava/lang/String;Ljava/lang/String;)V
-    :try_end_434
-    .catch Ljava/lang/Exception; {:try_start_2f6 .. :try_end_434} :catch_308
+    :try_end_430
+    .catch Ljava/lang/Exception; {:try_start_2f2 .. :try_end_430} :catch_304
 
     const/4 v0, 0x0
 
-    goto :goto_460
+    goto :goto_45c
 
-    .line 92
-    :cond_436
-    :try_start_436
+    :cond_432
+    :try_start_432
     invoke-virtual {v10}, Lcom/bbk/theme/common/ThemeItem;->getResId()Ljava/lang/String;
 
     move-result-object v0
@@ -6968,23 +6920,22 @@
     const-string v1, "true"
 
     invoke-static {v0, v1}, Lcom/bbk/theme/utils/t;->setDownLoadVerifyResult(Ljava/lang/String;Ljava/lang/String;)V
-    :try_end_443
-    .catch Ljava/lang/Exception; {:try_start_436 .. :try_end_443} :catch_445
+    :try_end_43f
+    .catch Ljava/lang/Exception; {:try_start_432 .. :try_end_43f} :catch_441
 
     const/4 v0, 0x1
 
-    goto :goto_460
+    goto :goto_45c
 
-    :catch_445
+    :catch_441
     move-exception v0
 
     move-object v1, v0
 
     const/4 v0, 0x1
 
-    .line 93
-    :goto_448
-    :try_start_448
+    :goto_444
+    :try_start_444
     new-instance v4, Ljava/lang/StringBuilder;
 
     invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
@@ -7005,8 +6956,7 @@
 
     invoke-static {v9, v1}, Lcom/bbk/theme/utils/s2;->e(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 94
-    :goto_460
+    :goto_45c
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -7034,46 +6984,44 @@
     move-result-object v0
 
     invoke-static {v9, v0}, Lcom/bbk/theme/utils/s2;->v(Ljava/lang/String;Ljava/lang/String;)V
-    :try_end_481
-    .catch Ljava/lang/Exception; {:try_start_448 .. :try_end_481} :catch_483
+    :try_end_47d
+    .catch Ljava/lang/Exception; {:try_start_444 .. :try_end_47d} :catch_47f
 
-    goto/16 :goto_61a
+    goto/16 :goto_616
 
-    :catch_483
+    :catch_47f
     move-exception v0
 
-    goto/16 :goto_610
+    goto/16 :goto_60c
 
-    :catch_486
+    :catch_482
     move-exception v0
 
-    :goto_487
+    :goto_483
     move-object/from16 v21, v4
 
     move/from16 v20, v6
 
-    goto/16 :goto_610
+    goto/16 :goto_60c
 
-    :cond_48d
+    :cond_489
     move-object/from16 v21, v4
 
     move/from16 v20, v6
 
     const/16 v0, 0x10
 
-    if-ne v2, v0, :cond_61a
+    if-ne v2, v0, :cond_616
 
-    .line 95
-    :try_start_495
+    :try_start_491
     invoke-virtual/range {p0 .. p1}, Lcom/bbk/theme/utils/sa;->getWidgetTypeMd5(Ljava/lang/String;)Ljava/util/Map;
 
     move-result-object v0
 
-    if-eqz v0, :cond_562
+    if-eqz v0, :cond_55e
 
-    if-eqz v13, :cond_562
+    if-eqz v13, :cond_55e
 
-    .line 96
     invoke-interface {v0}, Ljava/util/Map;->size()I
 
     move-result v1
@@ -7082,9 +7030,8 @@
 
     move-result v4
 
-    if-ne v1, v4, :cond_562
+    if-ne v1, v4, :cond_55e
 
-    .line 97
     invoke-virtual {v13}, Ljava/util/LinkedHashMap;->entrySet()Ljava/util/Set;
 
     move-result-object v1
@@ -7095,12 +7042,12 @@
 
     const/4 v6, 0x1
 
-    :goto_4b0
+    :goto_4ac
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v4
 
-    if-eqz v4, :cond_551
+    if-eqz v4, :cond_54d
 
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -7108,26 +7055,23 @@
 
     check-cast v4, Ljava/util/Map$Entry;
 
-    .line 98
     invoke-interface {v4}, Ljava/util/Map$Entry;->getKey()Ljava/lang/Object;
 
     move-result-object v8
 
     check-cast v8, Ljava/lang/String;
 
-    .line 99
     invoke-interface {v4}, Ljava/util/Map$Entry;->getValue()Ljava/lang/Object;
 
     move-result-object v4
 
     check-cast v4, Ljava/lang/String;
 
-    .line 100
     invoke-interface {v0, v8}, Ljava/util/Map;->containsKey(Ljava/lang/Object;)Z
 
     move-result v13
 
-    if-eqz v13, :cond_4e1
+    if-eqz v13, :cond_4dd
 
     invoke-interface {v0, v8}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
@@ -7139,30 +7083,28 @@
 
     move-result v13
 
-    if-nez v13, :cond_4db
+    if-nez v13, :cond_4d7
 
-    goto :goto_4e1
+    goto :goto_4dd
 
-    :cond_4db
+    :cond_4d7
     move-object/from16 v13, v19
 
-    goto :goto_54d
+    goto :goto_549
 
-    :catch_4de
+    :catch_4da
     move-exception v0
 
-    goto/16 :goto_5ef
+    goto/16 :goto_5eb
 
-    .line 101
-    :cond_4e1
-    :goto_4e1
+    :cond_4dd
+    :goto_4dd
     invoke-interface {v0, v8}, Ljava/util/Map;->containsKey(Ljava/lang/Object;)Z
 
     move-result v6
 
-    if-nez v6, :cond_4fb
+    if-nez v6, :cond_4f7
 
-    .line 102
     new-instance v6, Ljava/lang/StringBuilder;
 
     invoke-direct {v6}, Ljava/lang/StringBuilder;-><init>()V
@@ -7179,13 +7121,12 @@
 
     invoke-static {v9, v6}, Lcom/bbk/theme/utils/s2;->v(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 103
-    :cond_4fb
+    :cond_4f7
     invoke-interface {v0, v8}, Ljava/util/Map;->containsKey(Ljava/lang/Object;)Z
 
     move-result v6
 
-    if-eqz v6, :cond_54a
+    if-eqz v6, :cond_546
 
     invoke-interface {v0, v8}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
@@ -7197,9 +7138,8 @@
 
     move-result v6
 
-    if-nez v6, :cond_54a
+    if-nez v6, :cond_546
 
-    .line 104
     new-instance v6, Ljava/lang/StringBuilder;
 
     invoke-direct {v6}, Ljava/lang/StringBuilder;-><init>()V
@@ -7228,7 +7168,6 @@
 
     invoke-static {v9, v6}, Lcom/bbk/theme/utils/s2;->v(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 105
     new-instance v6, Ljava/lang/StringBuilder;
 
     invoke-direct {v6}, Ljava/lang/StringBuilder;-><init>()V
@@ -7249,45 +7188,42 @@
 
     invoke-static {v9, v4}, Lcom/bbk/theme/utils/s2;->v(Ljava/lang/String;Ljava/lang/String;)V
 
-    goto :goto_54c
+    goto :goto_548
 
-    :cond_54a
+    :cond_546
     move-object/from16 v13, v19
 
-    :goto_54c
+    :goto_548
     const/4 v6, 0x0
 
-    :goto_54d
+    :goto_549
     move-object/from16 v19, v13
 
-    goto/16 :goto_4b0
+    goto/16 :goto_4ac
 
-    :cond_551
-    if-eqz v6, :cond_55b
+    :cond_54d
+    if-eqz v6, :cond_557
 
     const-string v0, "WIDGET digest3 : true"
 
-    .line 106
     invoke-static {v9, v0}, Lcom/bbk/theme/utils/s2;->v(Ljava/lang/String;Ljava/lang/String;)V
 
     const/4 v15, 0x1
 
-    goto/16 :goto_608
+    goto/16 :goto_604
 
-    :cond_55b
+    :cond_557
     const-string v0, "WIDGET digest3 : false"
 
-    .line 107
     invoke-static {v9, v0}, Lcom/bbk/theme/utils/s2;->v(Ljava/lang/String;Ljava/lang/String;)V
 
-    goto/16 :goto_607
+    goto/16 :goto_603
 
-    :cond_562
-    if-eqz v0, :cond_5e9
+    :cond_55e
+    if-eqz v0, :cond_5e5
 
-    if-eqz v13, :cond_5e9
+    if-eqz v13, :cond_5e5
 
-    .line 108
     invoke-virtual {v13}, Ljava/util/LinkedHashMap;->keySet()Ljava/util/Set;
 
     move-result-object v1
@@ -7296,13 +7232,13 @@
 
     move-result-object v1
 
-    :cond_56e
-    :goto_56e
+    :cond_56a
+    :goto_56a
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v4
 
-    if-eqz v4, :cond_595
+    if-eqz v4, :cond_591
 
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -7310,14 +7246,12 @@
 
     check-cast v4, Ljava/lang/String;
 
-    .line 109
     invoke-interface {v0, v4}, Ljava/util/Map;->containsKey(Ljava/lang/Object;)Z
 
     move-result v6
 
-    if-nez v6, :cond_56e
+    if-nez v6, :cond_56a
 
-    .line 110
     new-instance v6, Ljava/lang/StringBuilder;
 
     invoke-direct {v6}, Ljava/lang/StringBuilder;-><init>()V
@@ -7334,10 +7268,9 @@
 
     invoke-static {v9, v4}, Lcom/bbk/theme/utils/s2;->v(Ljava/lang/String;Ljava/lang/String;)V
 
-    goto :goto_56e
+    goto :goto_56a
 
-    .line 111
-    :cond_595
+    :cond_591
     invoke-interface {v0}, Ljava/util/Map;->keySet()Ljava/util/Set;
 
     move-result-object v1
@@ -7346,13 +7279,13 @@
 
     move-result-object v1
 
-    :cond_59d
-    :goto_59d
+    :cond_599
+    :goto_599
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v4
 
-    if-eqz v4, :cond_5c4
+    if-eqz v4, :cond_5c0
 
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -7360,14 +7293,12 @@
 
     check-cast v4, Ljava/lang/String;
 
-    .line 112
     invoke-virtual {v13, v4}, Ljava/util/AbstractMap;->containsKey(Ljava/lang/Object;)Z
 
     move-result v6
 
-    if-nez v6, :cond_59d
+    if-nez v6, :cond_599
 
-    .line 113
     new-instance v6, Ljava/lang/StringBuilder;
 
     invoke-direct {v6}, Ljava/lang/StringBuilder;-><init>()V
@@ -7384,10 +7315,9 @@
 
     invoke-static {v9, v4}, Lcom/bbk/theme/utils/s2;->v(Ljava/lang/String;Ljava/lang/String;)V
 
-    goto :goto_59d
+    goto :goto_599
 
-    .line 114
-    :cond_5c4
+    :cond_5c0
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -7418,21 +7348,19 @@
 
     invoke-static {v9, v0}, Lcom/bbk/theme/utils/s2;->v(Ljava/lang/String;Ljava/lang/String;)V
 
-    goto :goto_607
+    goto :goto_603
 
-    :cond_5e9
+    :cond_5e5
     const-string v0, "WIDGET digest3 - : false , widgetTypeMd5 == null "
 
-    .line 115
     invoke-static {v9, v0}, Lcom/bbk/theme/utils/s2;->v(Ljava/lang/String;Ljava/lang/String;)V
-    :try_end_5ee
-    .catch Ljava/lang/Exception; {:try_start_495 .. :try_end_5ee} :catch_4de
+    :try_end_5ea
+    .catch Ljava/lang/Exception; {:try_start_491 .. :try_end_5ea} :catch_4da
 
-    goto :goto_607
+    goto :goto_603
 
-    .line 116
-    :goto_5ef
-    :try_start_5ef
+    :goto_5eb
+    :try_start_5eb
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -7452,49 +7380,46 @@
     move-result-object v0
 
     invoke-static {v9, v0}, Lcom/bbk/theme/utils/s2;->e(Ljava/lang/String;Ljava/lang/String;)V
-    :try_end_607
-    .catch Ljava/lang/Exception; {:try_start_5ef .. :try_end_607} :catch_483
+    :try_end_603
+    .catch Ljava/lang/Exception; {:try_start_5eb .. :try_end_603} :catch_47f
 
-    :goto_607
+    :goto_603
     const/4 v15, 0x0
 
-    :goto_608
+    :goto_604
     move/from16 v0, v18
 
-    goto :goto_61d
+    goto :goto_619
 
-    :catch_60b
+    :catch_607
     move-exception v0
 
     move/from16 p5, v1
 
-    goto/16 :goto_487
+    goto/16 :goto_483
 
-    .line 117
-    :goto_610
+    :goto_60c
     new-instance v1, Ljava/lang/StringBuilder;
 
     const-string v4, "e : "
 
     invoke-direct {v1, v4}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
 
-    .line 118
     invoke-static {v0, v1, v9}, Landroid/support/v4/media/a;->x(Ljava/lang/Exception;Ljava/lang/StringBuilder;Ljava/lang/String;)V
 
-    :cond_61a
-    :goto_61a
+    :cond_616
+    :goto_616
     move/from16 v15, p5
 
-    goto :goto_608
+    goto :goto_604
 
-    :goto_61d
+    :goto_619
     const-string v1, "parseResItzFile xmlMd5:"
 
     const-string v4, ", zipMd5:"
 
     const-string v6, ", digest:"
 
-    .line 119
     invoke-static {v1, v7, v4, v11, v6}, Lcom/bbk/theme/DataGather/a;->g(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v1
@@ -7503,74 +7428,63 @@
 
     const-string v6, ",verifyMd5:"
 
-    .line 120
     invoke-static {v1, v3, v4, v12, v6}, Landroidx/core/content/res/c;->z(Ljava/lang/StringBuilder;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 121
     invoke-static {v1, v15, v9}, Lcom/bbk/theme/DataGather/a;->t(Ljava/lang/StringBuilder;ZLjava/lang/String;)V
 
-    if-eqz v15, :cond_65c
+    if-eqz v15, :cond_658
 
-    .line 122
     invoke-virtual/range {v21 .. v21}, Lcom/bbk/theme/payment/entry/RuleEntry;->getUid()Ljava/lang/String;
 
     move-result-object v0
 
     invoke-virtual {v10, v0}, Lcom/bbk/theme/common/ThemeItem;->setResId(Ljava/lang/String;)V
 
-    .line 123
     invoke-virtual/range {v21 .. v21}, Lcom/bbk/theme/payment/entry/RuleEntry;->getPirce()I
 
     move-result v0
 
     invoke-virtual {v10, v0}, Lcom/bbk/theme/common/ThemeItem;->setPrice(I)V
 
-    .line 124
     invoke-virtual/range {v21 .. v21}, Lcom/bbk/theme/payment/entry/RuleEntry;->getOpenId()Ljava/lang/String;
 
     move-result-object v0
 
     invoke-virtual {v10, v0}, Lcom/bbk/theme/common/ThemeItem;->setOpenId(Ljava/lang/String;)V
 
-    .line 125
     invoke-virtual/range {v21 .. v21}, Lcom/bbk/theme/payment/entry/RuleEntry;->getRight()Ljava/lang/String;
 
     move-result-object v0
 
     invoke-virtual {v10, v0}, Lcom/bbk/theme/common/ThemeItem;->setRight(Ljava/lang/String;)V
 
-    .line 126
     invoke-virtual {v10}, Lcom/bbk/theme/common/ThemeItem;->getPackageId()Ljava/lang/String;
 
     move-result-object v0
 
-    .line 127
     invoke-virtual {v10}, Lcom/bbk/theme/common/ThemeItem;->getOldPackageId()Ljava/lang/String;
 
     move-result-object v1
 
-    .line 128
     invoke-static {v0, v1, v2}, Lcom/bbk/theme/utils/j;->saveApplyOldPackageId(Ljava/lang/String;Ljava/lang/String;I)V
 
     move-object v8, v10
 
-    goto :goto_67e
+    goto :goto_67a
 
-    :cond_65c
+    :cond_658
     const-string v1, "verifyMd5 is "
 
     const-string v2, ", itzDigestError is "
 
     const-string v3, ", needVerifyKey is "
 
-    .line 129
     invoke-static {v1, v15, v2, v0, v3}, Lcom/bbk/theme/DataGather/a;->h(Ljava/lang/String;ZLjava/lang/String;ZLjava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v0
 
     move/from16 v1, v20
 
-    .line 130
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
 
     invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
@@ -7579,7 +7493,6 @@
 
     sput-object v0, Lcom/bbk/theme/utils/j0;->a:Ljava/lang/String;
 
-    .line 131
     new-instance v0, Ljava/lang/StringBuilder;
 
     const-string v1, "verifyMd5 failed, "
@@ -7588,18 +7501,17 @@
 
     sget-object v1, Lcom/bbk/theme/utils/j0;->a:Ljava/lang/String;
 
-    .line 132
     invoke-static {v0, v1, v9}, Lcom/bbk/theme/DataGather/a;->C(Ljava/lang/StringBuilder;Ljava/lang/String;Ljava/lang/String;)V
 
     const/4 v8, 0x0
 
-    :goto_67e
+    :goto_67a
     move-object v10, v8
 
-    goto :goto_68d
+    goto :goto_689
 
-    :cond_680
-    if-eqz v10, :cond_68d
+    :goto_67c
+    if-eqz v10, :cond_689
 
     .line 133
     invoke-virtual {v10}, Lcom/bbk/theme/common/ThemeItem;->getPackageId()Ljava/lang/String;
@@ -7612,9 +7524,9 @@
 
     invoke-static {v0, v1, v2}, Lcom/bbk/theme/utils/j;->saveApplyOldPackageId(Ljava/lang/String;Ljava/lang/String;I)V
 
-    :cond_68d
-    :goto_68d
-    if-eqz v10, :cond_6c3
+    :cond_689
+    :goto_689
+    if-eqz v10, :cond_6bf
 
     .line 134
     new-instance v0, Ljava/lang/StringBuilder;
@@ -7661,11 +7573,11 @@
     .line 136
     invoke-static {v1, v0, v9}, Lcom/bbk/theme/DataGather/a;->o(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 
-    goto :goto_6f4
+    goto :goto_6f0
 
     .line 137
-    :cond_6c3
-    :try_start_6c3
+    :cond_6bf
+    :try_start_6bf
     new-instance v0, Ljava/io/File;
 
     move-object/from16 v1, p1
@@ -7692,12 +7604,12 @@
     move-result-object v0
 
     invoke-static {v9, v0}, Lcom/bbk/theme/utils/s2;->v(Ljava/lang/String;Ljava/lang/String;)V
-    :try_end_6e2
-    .catch Ljava/lang/Exception; {:try_start_6c3 .. :try_end_6e2} :catch_6e3
+    :try_end_6de
+    .catch Ljava/lang/Exception; {:try_start_6bf .. :try_end_6de} :catch_6df
 
-    goto :goto_6f4
+    goto :goto_6f0
 
-    :catch_6e3
+    :catch_6df
     move-exception v0
 
     .line 139
@@ -7717,11 +7629,11 @@
     .line 141
     invoke-static {v0, v1, v9}, Lcom/bbk/theme/DataGather/a;->l(Ljava/lang/Exception;Ljava/lang/StringBuilder;Ljava/lang/String;)V
 
-    :goto_6f4
+    :goto_6f0
     return-object v10
 
-    :cond_6f5
-    :goto_6f5
+    :cond_6f1
+    :goto_6f1
     const-string v0, ", screenratio:"
 
     .line 142
@@ -7760,8 +7672,8 @@
     return-object v10
 
     .line 145
-    :cond_71a
-    :goto_71a
+    :cond_716
+    :goto_716
     new-instance v0, Ljava/lang/StringBuilder;
 
     const-string v1, "parseDescriptionXml failed,"
