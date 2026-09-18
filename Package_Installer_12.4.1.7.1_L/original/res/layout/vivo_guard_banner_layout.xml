@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="@7F0705C6"
+    android:focusable="false"
+    android:layout_width="-1"
+    android:layout_height="-2">
+    <TextView
+        android:id="@7F0A0334"
+        android:focusable="true"
+        android:layout_width="-2"
+        android:layout_height="-2"
+        android:layout_marginBottom="@7F0705C5"
+        android:text="@7F100128"
+        style="@7F11016C"/>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@7F0A0129"
+        android:layout_width="-1"
+        android:layout_height="@7F070651"
+        android:layout_below="@7F0A0334"
+        android:overScrollMode="2"/>
+    <com.originui.widget.pageindicator.VPageIndicator
+        android:layout_gravity="0x00000001"
+        android:id="@7F0A015F"
+        android:layout_width="-2"
+        android:layout_height="-2"
+        android:layout_alignBottom="@7F0A0129"
+        android:layout_centerHorizontal="true"
+        app:indicatorAnimationType="1"
+        app:indicatorOrientation="0"
+        app:indicatorSelectedColorType="1"
+        app:indicatorViewPager="@7F0A0129"/>
+</RelativeLayout>

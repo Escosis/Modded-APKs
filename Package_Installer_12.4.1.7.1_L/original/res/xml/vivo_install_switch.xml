@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:key="root">
+    <com.android.packageinstaller.vivo.view.BannerLayoutPreference
+        android:key="install_switch_basic_banner"
+        app:selectable="false"/>
+    <PreferenceScreen
+        app:key="preference_screen_security_guard_entrance"
+        app:title="@7F1001FA"
+        app:vCardType="1"
+        app:vsubtitle="@7F100127"
+        app:widgetLayout="@7F0D0113"/>
+    <PreferenceCategory
+        app:key="divider1"
+        app:title="@7F100126">
+        <PreferenceScreen
+            app:key="preference_screen_auth_type_entrance"
+            app:title="@7F10008F"
+            app:vsubtitle="@7F10008E"/>
+        <SwitchPreference
+            app:defaultValue="false"
+            app:disableDependentsState="false"
+            app:key="switch_preference_auto_clear"
+            app:title="@7F100123"
+            app:vsubtitle="@7F1000B0"/>
+        <SwitchPreference
+            app:defaultValue="false"
+            app:disableDependentsState="false"
+            app:key="switch_preference_recommend"
+            app:title="@7F10011E"
+            app:vsubtitle="@7F10011D"/>
+    </PreferenceCategory>
+    <PreferenceCategory
+        app:key="divider2"
+        app:title="@7F1001F2">
+        <PreferenceScreen
+            app:key="preference_screen_publish_or_appeal_entrance"
+            app:title="@7F1001F3"/>
+    </PreferenceCategory>
+    <com.android.packageinstaller.vivo.view.EmptyPreferenceCategory
+        app:key="empty"
+        app:title=" "
+        app:vshowDivider="false"/>
+</androidx.preference.PreferenceScreen>

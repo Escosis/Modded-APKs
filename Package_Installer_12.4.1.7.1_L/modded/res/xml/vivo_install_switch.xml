@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:key="root">
+    <com.android.packageinstaller.vivo.view.BannerLayoutPreference
+        android:key="install_switch_basic_banner"
+        app:selectable="false"/>
+    <PreferenceScreen
+        app:key="preference_screen_security_guard_entrance"
+        app:title="@7F1001FA"
+        app:vCardType="1"
+        app:vsubtitle="@7F100127"
+        app:widgetLayout="@7F0D0113"/>
+    <PreferenceCategory
+        app:key="divider1"
+        app:title="@7F100126">
+        <PreferenceScreen
+            app:key="preference_screen_auth_type_entrance"
+            app:title="@7F10008F"
+            app:vsubtitle="@7F10008E"/>
+        <SwitchPreference
+            app:defaultValue="false"
+            app:disableDependentsState="false"
+            app:key="switch_preference_auto_clear"
+            app:title="@7F100123"
+            app:vsubtitle="@7F1000B0"/>
+    </PreferenceCategory>
+    <PreferenceCategory
+        app:key="divider_advanced"
+        app:title="高级设置">
+        <SwitchPreference
+            app:defaultValue="false"
+            app:key="advanced_pref_root_install"
+            app:title="使用 ROOT 权限安装"
+            app:vsubtitle="通过 ROOT 方式绕过系统安装限制，可以解决-903等报错，默认携带“ -r -d --user current”参数"/>
+        <SwitchPreference
+            app:defaultValue="false"
+            app:key="advanced_pref_hide_guard"
+            app:title="完全隐藏安全提示"
+            app:vsubtitle="不显示“安全守护提示您”和“已了解应用的风险检测结果”"/>
+    </PreferenceCategory>
+    <com.android.packageinstaller.vivo.view.EmptyPreferenceCategory
+        app:key="empty"
+        app:title=" "
+        app:vshowDivider="false"/>
+</androidx.preference.PreferenceScreen>

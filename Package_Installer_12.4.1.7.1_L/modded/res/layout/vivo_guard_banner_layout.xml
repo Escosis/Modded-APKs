@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:focusable="false"
+    android:layout_width="-1"
+    android:layout_height="-2">
+    <TextView
+        android:id="@7F0A0334"
+        android:focusable="true"
+        android:layout_width="-2"
+        android:layout_height="-2"
+        android:layout_marginBottom="@7F0705C5"
+        android:text="@7F100128"
+        android:paddingStart="4.0dip"
+        android:paddingEnd="4.0dip"
+        style="@7F11016C"/>
+</RelativeLayout>
