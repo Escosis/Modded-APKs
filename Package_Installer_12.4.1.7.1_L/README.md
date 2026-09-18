@@ -29,7 +29,7 @@ _以下为精简版修改内容_
 
 - （体验优化）修改 com.android.packageinstaller.vivo.view.RiskWarningView 类，移除 OpenSuperGuardGuideView 相关的字段（K 字段），赋值（j 方法中的 findViewById）和调用（s 方法末尾）；同时修改 res/layout/vivo\_risk\_warning.xml，移除 OpenSuperGuardGuideView 相关字段。该修改实际上移除了安装界面的提示开启超级守护的相关视图
 
-- （体验优化）修改 com.android.packageinstaller.vivo.activity.SuperGuardActivity，移除 C3 所在按钮与点击逻辑。该修改实际上移除了超级守护界面右上角的“关于”按钮（由于断网，这个页面永远无法显示所以删掉了，实际访问的网址为：https://apph5.vivo.com.cn/h5/2023/installerdetail/index.html#/?naviLightColor=#F0F7FD&naviDarkColor=#00000&superGuard=true；由于该按钮是动态添加，所以没有改`xml`的必要）
+- （体验优化）修改 com.android.packageinstaller.vivo.activity.SuperGuardActivity，移除 C3 所在按钮与点击逻辑。该修改实际上移除了超级守护界面右上角的“关于”按钮（由于断网，这个页面永远无法显示所以删掉了，实际访问的网址为：https://apph5.vivo.com.cn/h5/2023/installerdetail/index.html#/?naviLightColor=#F0F7FD&naviDarkColor=#00000&superGuard=true ；由于该按钮是动态添加，所以没有改`xml`的必要）
 
 - （体验优化）修改 AndroidManifest.xml，将 com.android.packageinstaller.InstallStart 活动的 android:excludeFromRecents 属性改为 false，使其在多任务中显示
 
