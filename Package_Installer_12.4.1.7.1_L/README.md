@@ -1,6 +1,6 @@
 ### 文件说明
 
-- 本修改版修改了 classes.dex，res 目录下的资源`xml`（原版的文件来自 res 反混淆后的原包）以及 AndroidManifest.xml，两个文件夹里分别有原版和修改版的`dex`，提取的修改过的`smali`和反编译后的`xml`（含有Lite字样的是精简版的相关文件）
+- 本修改版修改了 classes.dex，res 目录下的资源`xml`（原版的文件来自 res 反混淆后的原包）以及 AndroidManifest.xml，两个文件夹里分别有原版和修改版的`dex`，提取的修改过的`smali`和反编译后的`xml`（含有 Lite 字样的是精简版的相关文件）
 
 ### 修改日志
 _以下为精简版修改内容_
