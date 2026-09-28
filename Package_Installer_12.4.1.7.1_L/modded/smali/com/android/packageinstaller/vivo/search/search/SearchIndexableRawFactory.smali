@@ -38,16 +38,6 @@
 
 .method public static createSearchList(Landroid/content/Context;)Ljava/util/List;
     .registers 6
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "(",
-            "Landroid/content/Context;",
-            ")",
-            "Ljava/util/List<",
-            "Lcom/android/packageinstaller/vivo/search/search/SearchIndexableRaw;",
-            ">;"
-        }
-    .end annotation
 
     new-instance v0, Ljava/util/ArrayList;
 
@@ -61,23 +51,6 @@
 
     invoke-direct {v2}, Lcom/android/packageinstaller/vivo/search/search/SearchIndexableRawFactory;-><init>()V
 
-    sget v3, Li0/O0;->T2:I
-
-    invoke-virtual {v1, v3}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
-
-    move-result-object v3
-
-    const-string v4, "preference_screen_install_charge"
-
-    invoke-virtual {v2, p0, v3, v4}, Lcom/android/packageinstaller/vivo/search/search/SearchIndexableRawFactory;->getSearchIndexableRaw(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;)Lcom/android/packageinstaller/vivo/search/search/SearchIndexableRaw;
-
-    move-result-object v3
-
-    if-eqz v3, :cond_1f
-
-    invoke-interface {v0, v3}, Ljava/util/List;->add(Ljava/lang/Object;)Z
-
-    :cond_1f
     sget v3, Li0/O0;->e4:I
 
     invoke-virtual {v1, v3}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
@@ -90,11 +63,11 @@
 
     move-result-object v3
 
-    if-eqz v3, :cond_30
+    if-eqz v3, :cond_1f
 
     invoke-interface {v0, v3}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    :cond_30
+    :cond_1f
     sget v3, Li0/O0;->p2:I
 
     invoke-virtual {v1, v3}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
@@ -107,11 +80,11 @@
 
     move-result-object v3
 
-    if-eqz v3, :cond_41
+    if-eqz v3, :cond_30
 
     invoke-interface {v0, v3}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    :cond_41
+    :cond_30
     sget v3, Li0/O0;->Q0:I
 
     invoke-virtual {v1, v3}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
@@ -124,11 +97,37 @@
 
     move-result-object v3
 
-    if-eqz v3, :cond_52
+    if-eqz v3, :cond_41
 
     invoke-interface {v0, v3}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    :cond_52
+    :cond_41
+    const-string v3, "使用 ROOT 权限安装"
+
+    const-string v4, "advanced_pref_root_install"
+
+    invoke-virtual {v2, p0, v3, v4}, Lcom/android/packageinstaller/vivo/search/search/SearchIndexableRawFactory;->getSearchIndexableRaw(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;)Lcom/android/packageinstaller/vivo/search/search/SearchIndexableRaw;
+
+    move-result-object v3
+
+    if-eqz v3, :cond_4e
+
+    invoke-interface {v0, v3}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    :cond_4e
+    const-string v3, "完全隐藏安全提示"
+
+    const-string v4, "advanced_pref_hide_guard"
+
+    invoke-virtual {v2, p0, v3, v4}, Lcom/android/packageinstaller/vivo/search/search/SearchIndexableRawFactory;->getSearchIndexableRaw(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;)Lcom/android/packageinstaller/vivo/search/search/SearchIndexableRaw;
+
+    move-result-object v3
+
+    if-eqz v3, :cond_5b
+
+    invoke-interface {v0, v3}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    :cond_5b
     return-object v0
 .end method
 

@@ -45,3 +45,7 @@ $1 在主线程回调 onRootInstallSuccess()，$2 在主线程携带错误消息
 _p.s. 目前参数固定，已在设置中提示，未来可能添加自定义参数的功能_
 
 - 对于「完全隐藏安全提示」，在 com.android.packageinstaller.vivo.view.BottomView 类的 r 方法中判断，若开关开启则 if-eqz p5 不跳转，走 p5 = true 分支，跳过 U3 和 CheckBox 创建，该修改实际上隐藏了应用为外部来源时的“已了解应用的风险检测结果”小字及其勾选框（因其点击的必要性在前已经移除，故该勾选框也没有显示的必要）；在 com.android.packageinstaller.vivo.view.RiskWarningView 类的 \<init\> 方法中判断，若开关开启则直接返回，该修改实际上隐藏了“安全守护提示您”视图
+
+- 在 com.android.packageinstaller.vivo.search.search.SearchIndexableRawFactory 类的 createSearchList 方法中删除无用的 preference\_screen\_install\_charge 并为上面两个高级设置项添加索引，安装并重启设置后可在设置里搜索到
+
+- 修改为高版本和版本号，防止系统自带的软件包安装程序被恢复
