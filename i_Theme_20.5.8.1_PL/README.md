@@ -41,7 +41,7 @@
 对于非机主用户，逻辑为：DATA\_THEME\_PATH 初始定义为 /data/bbkcore/theme/（见 ThemeConstants.smali 静态构造器中的 sput-object）。在静态构造器中，会获取当前用户 ID（CURRENT\_USER\_ID），若 >0，则生成 MUTIUSER\_PATH = userId + "/"，并将所有相关路径（包括 DATA\_THEME\_PATH）重新拼接为 原路径 + MUTIUSER\_PATH。修改版经过测试会导入到正确的路径中。
 - 下载下来的内容文件的权限是777，而修改版导入的是600（不影响应用与删除等逻辑），可以用于区分（实则是懒得写改权限的代码了）
 - 使用临时 ROOT 安装的修改版主题在重启掉 ROOT 后依然可用，且可以使用MT管理器等访问并修改上面所说的目录（使用方法详见 [MT管理器 - 注入文件提供器](https://mt2.cn/guide/reverse/inject-documents-provider.html)）。如果和我一样出现MT管理器报错无法读写的情况，请转到原生文件应用中进行导出后查看。
-- 自制的导入流程图：
+- 自制导入的流程图：
 
 ```text
 用户点击导入
@@ -64,28 +64,28 @@ ImportThemeLauncher.handleActivityResult  读取 uri
     ▼
 ImportThemeHelper.importTheme
     │
-    ├── .ttf 且 resType=4  →  importFontFile              ─┐
-    │                        生成临时 itz                  │
+    ├── .ttf 且 resType=4  →  importFontFile             ─┐
+    │                        生成临时 itz                    │
     │                                                       │
-    ├── .mp4 且 resType=2  →  importLiveWallpaperFile      │
-    │                        生成临时 itz                  │
+    ├── .mp4 且 resType=2  →  importLiveWallpaperFile     │
+    │                        生成临时 itz                    │
     │                                                       │
-    ├── .itz               →  importItzFile                ─┼──→ va.getResSavePath 复制到对应目录
-    │                        直接复制                       │         │
+    ├── .itz               →  importItzFile             ─┼──→ va.getResSavePath 复制到对应目录
+    │                        直接复制                        │         │
     │                                                       │         ▼
     ├── 图片 且 resType=9  →  copyWallpaperImage           │    ImportThemeHelper$1
-    │                        + writeWallpaperInfoFile      │    postRunnable 到后台线程
-    │                        手动构造 ThemeItem            │         │
+    │                        + writeWallpaperInfoFile       │    postRunnable 到后台线程
+    │                        手动构造 ThemeItem              │         │
     │                        setThemeItem                   │         │
     │                                                       │         │
     └── 其它               →  弹对话框提示                 ─┘         │
-                                                                    ▼
-                                                              run 方法执行
-                                                                    │
-                                                                    ▼
-                                                    ┌────────── resType=9 且 mThemeItem 非空？
+                                                                       ▼
+                                                                  run 方法执行
+                                                                       │
+                                                                       ▼
+                                                    ┌─── resType=9 且 mThemeItem 非空？
                                                     │
-                                              是 ───┤─── 否
+                                            是 ───┤─── 否
                                                     │
                                                     ▼
                                         V: 直接用 mThemeItem
