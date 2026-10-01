@@ -1,5 +1,5 @@
 ### 文件说明
-- 本修改版仅修改了`dex`，两个文件夹里分别有原版和修改版的`dex`和提取的修改过的`smali`
+- 本修改版仅修改了`dex`，两个文件夹里分别有原版和修改版的`dex`和提取的修改过的`smali`（新增的类都位于新增的 classes7.dex 中）
 - template 文件夹位于修改版`apk`的 assets 文件夹，内含直接导入`ttf`及`mp4`时用于构造`itz`的 description.xml
 
 ### 修改日志
@@ -15,6 +15,9 @@
 - 修改 com.bbk.theme.Theme 类的 onActivityResult 方法，去除在非升级库 requestCode 时无条件调用 finish() 导致导入完成后宿主 Activity 被关闭的校验。原代码在导入本地主题时发出的请求 requestCode 被 Fragment 内部替换成不在白名单内的随机值，触发了 onActivityResult 末尾的 finish()，使得导入流程结束后整个应用被关闭。修改后在方法开头判断 ImportThemeLauncher.pendingResType 是否≥0，若条件成立则将 pendingResType 重置为 -1 并直接返回，跳过后续包含 finish() 的所有逻辑。
 - 使用MT管理器注入文件提供器，并为其新增对 /data/bbkcore 目录的读写支持（在文件管理器中显示为 data_bbkcore 目录），使得可以在无 ROOT 权限的情况下读写该目录，便于主题编辑与导出（文件路径以及一些特殊情况详见其他提醒部分）（不知为何我最近使用MT管理器以此方式免 ROOT 访问会找不到文件，而使用安卓原生文件应用仍可以正常读写）
 - 修改 com.vivo.upgradelibrary.common.upgraderequest.app.c 类的 request 方法，令其在入口直接返回 stat=200 的 AppUpdateInfo，使得所有检查更新链路都不向服务器上报，统一视为无更新。（这样无需修改版本号了）
+- （PL\_2）修改 com.bbk.theme.pay.payment.e 类的 themeHasPayed 方法，令返回 true，令所有主题都显示下载按钮
+- （PL\_2）修改 com.bbk.theme.rich.payment.entry.GetAuthorizeEntry 类的 authorizeSuccess 方法，令返回 true，无视服务端返回值，客户端一律判定为允许下载，事实上能够下载 key 文件为空的主题包，包括付费主题
+- （PL\_2）修改 com.bbk.theme.ImmersionResBasePreview 类，在 n1（“分享”按钮）后新增“导出”按钮，点击弹出 VDialog 确认后，将 ThemeItem.getPath() 指向的本地文件按原名复制至手机存储（具体位于 /sdcard/Download/i Theme/Export/），成功后再弹出 VDialog 提示路径；确认回调由新增的 com.bbk.theme.ExportConfirmListener 类实现。
 
 ### 其他提醒
 - `itz`包中出现 style 文件夹的，i 主题无法正常解析，这并不是导入功能的问题，就算是免 ROOT 的替换方法也不支持这类主题包
