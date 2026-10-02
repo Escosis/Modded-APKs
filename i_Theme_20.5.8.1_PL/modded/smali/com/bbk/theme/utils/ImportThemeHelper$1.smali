@@ -210,17 +210,60 @@
     :cond_a7
     iget-object v12, p0, Lcom/bbk/theme/utils/ImportThemeHelper$1;->val$context:Landroid/content/Context;
 
+    const-string v13, "resId=?"
+
+    invoke-virtual {v8}, Lcom/bbk/theme/common/ThemeItem;->getResId()Ljava/lang/String;
+
+    move-result-object v14
+
+    filled-new-array {v14}, [Ljava/lang/String;
+
+    move-result-object v14
+
+    invoke-static {v12, v10, v13, v14}, Lcom/bbk/theme/base/ResDbUtils;->queryExistInDB(Landroid/content/Context;ILjava/lang/String;[Ljava/lang/String;)Z
+
+    move-result v13
+
+    if-eqz v13, :cond_d0
+
+    new-instance v13, Lcom/bbk/theme/utils/ImportThemeHelper$1$1;
+
+    iget-object v14, p0, Lcom/bbk/theme/utils/ImportThemeHelper$1;->val$fragment:Landroidx/fragment/app/b0;
+
+    iget-object v11, p0, Lcom/bbk/theme/utils/ImportThemeHelper$1;->destPath:Ljava/lang/String;
+
+    iget v0, p0, Lcom/bbk/theme/utils/ImportThemeHelper$1;->resType:I
+
+    invoke-direct {v13, v12, v14, v11, v0}, Lcom/bbk/theme/utils/ImportThemeHelper$1$1;-><init>(Landroid/content/Context;Landroidx/fragment/app/b0;Ljava/lang/String;I)V
+
+    invoke-static {}, Lcom/bbk/theme/ThemeApp;->getInstance()Lcom/bbk/theme/ThemeApp;
+
+    move-result-object v14
+
+    invoke-virtual {v14}, Lcom/bbk/theme/ThemeApp;->getHandler()Landroid/os/Handler;
+
+    move-result-object v14
+
+    invoke-virtual {v14, v13}, Landroid/os/Handler;->post(Ljava/lang/Runnable;)Z
+
+    return-void
+
+    :cond_d0
     invoke-static {v12, v10, v9}, Lcom/bbk/theme/base/ResDbUtils;->insertDb(Landroid/content/Context;ILandroid/content/ContentValues;)Z
+
+    const-string v9, "导入成功"
+
+    invoke-static {v12, v9}, Lcom/bbk/theme/utils/ih;->showToast(Landroid/content/Context;Ljava/lang/String;)V
 
     iget-object v9, p0, Lcom/bbk/theme/utils/ImportThemeHelper$1;->val$fragment:Landroidx/fragment/app/b0;
 
-    if-eqz v9, :cond_be
+    if-eqz v9, :cond_ea
 
     invoke-virtual {v9}, Landroidx/fragment/app/b0;->getActivity()Landroidx/fragment/app/FragmentActivity;
 
     move-result-object v10
 
-    if-eqz v10, :cond_be
+    if-eqz v10, :cond_ea
 
     new-instance v11, Lcom/bbk/theme/utils/ImportThemeHelper$RefreshRunnable;
 
@@ -228,7 +271,7 @@
 
     invoke-virtual {v10, v11}, Landroid/app/Activity;->runOnUiThread(Ljava/lang/Runnable;)V
 
-    :cond_be
+    :cond_ea
     new-instance v9, Lcom/bbk/theme/eventbus/ResChangedEventMessage;
 
     const/16 v10, 0x8
@@ -240,12 +283,12 @@
     move-result-object v0
 
     invoke-virtual {v0, v9}, Lnr/e;->f(Ljava/lang/Object;)V
-    :try_end_cc
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_cc} :catch_cd
+    :try_end_f8
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_f8} :catch_f9
 
     return-void
 
-    :catch_cd
+    :catch_f9
     move-exception v0
 
     iget-object v1, p0, Lcom/bbk/theme/utils/ImportThemeHelper$1;->val$context:Landroid/content/Context;

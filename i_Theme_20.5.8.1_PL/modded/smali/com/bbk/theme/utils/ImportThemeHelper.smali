@@ -1134,11 +1134,28 @@
 
     move-result-object v1
 
+    new-instance v2, Ljava/io/File;
+
+    invoke-direct {v2, v1}, Ljava/io/File;-><init>(Ljava/lang/String;)V
+
+    invoke-virtual {v2}, Ljava/io/File;->exists()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_3e
+
+    const-string/jumbo v2, "已存在同名文件，请重命名后导入"
+
+    invoke-static {p0, v2}, Lcom/bbk/theme/utils/ih;->showToast(Landroid/content/Context;Ljava/lang/String;)V
+
+    return-void
+
+    :cond_3e
     invoke-static {p0, p1, v1}, Lcom/bbk/theme/utils/ImportThemeHelper;->copyFile(Landroid/content/Context;Landroid/net/Uri;Ljava/lang/String;)Z
 
     move-result p1
 
-    if-nez p1, :cond_39
+    if-nez p1, :cond_4b
 
     const-string/jumbo p1, "复制文件失败，请检查权限和存储空间"
 
@@ -1146,7 +1163,7 @@
 
     return-void
 
-    :cond_39
+    :cond_4b
     new-instance p1, Lcom/bbk/theme/utils/ImportThemeHelper$1;
 
     invoke-direct {p1, p0, p2, v1, p3}, Lcom/bbk/theme/utils/ImportThemeHelper$1;-><init>(Landroid/content/Context;Landroidx/fragment/app/b0;Ljava/lang/String;I)V
@@ -1447,7 +1464,7 @@
 
     move-result v3
 
-    if-eqz v3, :cond_b6
+    if-nez v3, :cond_b6
 
     const-string v3, ".jpeg"
 
@@ -1455,7 +1472,7 @@
 
     move-result v3
 
-    if-eqz v3, :cond_b6
+    if-nez v3, :cond_b6
 
     const-string v3, ".png"
 
@@ -1463,7 +1480,7 @@
 
     move-result v3
 
-    if-eqz v3, :cond_b6
+    if-nez v3, :cond_b6
 
     const-string v3, ".webp"
 
@@ -1471,7 +1488,7 @@
 
     move-result v3
 
-    if-eqz v3, :cond_b6
+    if-nez v3, :cond_b6
 
     const-string v3, ".heic"
 
@@ -1479,7 +1496,7 @@
 
     move-result v3
 
-    if-eqz v3, :cond_b6
+    if-nez v3, :cond_b6
 
     const-string v3, ".heif"
 
@@ -1487,7 +1504,7 @@
 
     move-result v3
 
-    if-eqz v3, :cond_b6
+    if-nez v3, :cond_b6
 
     goto/16 :goto_170
 
@@ -1759,6 +1776,295 @@
     invoke-static {p0, p1}, Lcom/bbk/theme/utils/ih;->showToast(Landroid/content/Context;Ljava/lang/String;)V
 
     return-void
+.end method
+
+.method private static replaceTag(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    .registers 8
+
+    invoke-virtual {p0, p1}, Ljava/lang/String;->indexOf(Ljava/lang/String;)I
+
+    move-result v0
+
+    if-gez v0, :cond_7
+
+    return-object p0
+
+    :cond_7
+    invoke-virtual {p1}, Ljava/lang/String;->length()I
+
+    move-result v1
+
+    add-int/2addr v0, v1
+
+    invoke-virtual {p0, p2, v0}, Ljava/lang/String;->indexOf(Ljava/lang/String;I)I
+
+    move-result v1
+
+    if-gez v1, :cond_13
+
+    return-object p0
+
+    :cond_13
+    new-instance v2, Ljava/lang/StringBuilder;
+
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+
+    const/4 v3, 0x0
+
+    invoke-virtual {p0, v3, v0}, Ljava/lang/String;->substring(II)Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v2, p3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {p0, v1}, Ljava/lang/String;->substring(I)Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method public static rewriteItzId(Ljava/lang/String;Ljava/lang/String;I)Z
+    .registers 16
+
+    const/4 v0, 0x0
+
+    :try_start_1
+    invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
+
+    move-result-wide v1
+
+    invoke-static {v1, v2}, Ljava/lang/String;->valueOf(J)Ljava/lang/String;
+
+    move-result-object v1
+
+    new-instance v2, Ljava/lang/StringBuilder;
+
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+
+    invoke-virtual {v2, p2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v2, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    new-instance v3, Ljava/util/zip/ZipFile;
+
+    invoke-direct {v3, p0}, Ljava/util/zip/ZipFile;-><init>(Ljava/lang/String;)V
+
+    new-instance v4, Ljava/util/zip/ZipOutputStream;
+
+    new-instance v5, Ljava/io/FileOutputStream;
+
+    invoke-direct {v5, p1}, Ljava/io/FileOutputStream;-><init>(Ljava/lang/String;)V
+
+    invoke-direct {v4, v5}, Ljava/util/zip/ZipOutputStream;-><init>(Ljava/io/OutputStream;)V
+
+    const/16 v5, 0x1000
+
+    new-array v5, v5, [B
+
+    invoke-virtual {v3}, Ljava/util/zip/ZipFile;->entries()Ljava/util/Enumeration;
+
+    move-result-object v6
+
+    :goto_2f
+    invoke-interface {v6}, Ljava/util/Enumeration;->hasMoreElements()Z
+
+    move-result v7
+
+    if-eqz v7, :cond_b7
+
+    invoke-interface {v6}, Ljava/util/Enumeration;->nextElement()Ljava/lang/Object;
+
+    move-result-object v7
+
+    check-cast v7, Ljava/util/zip/ZipEntry;
+
+    invoke-virtual {v7}, Ljava/util/zip/ZipEntry;->getName()Ljava/lang/String;
+
+    move-result-object v8
+
+    const-string v9, "description.xml"
+
+    invoke-virtual {v9, v8}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v9
+
+    if-nez v9, :cond_65
+
+    new-instance v9, Ljava/util/zip/ZipEntry;
+
+    invoke-direct {v9, v8}, Ljava/util/zip/ZipEntry;-><init>(Ljava/lang/String;)V
+
+    invoke-virtual {v4, v9}, Ljava/util/zip/ZipOutputStream;->putNextEntry(Ljava/util/zip/ZipEntry;)V
+
+    invoke-virtual {v3, v7}, Ljava/util/zip/ZipFile;->getInputStream(Ljava/util/zip/ZipEntry;)Ljava/io/InputStream;
+
+    move-result-object v9
+
+    :goto_53
+    invoke-virtual {v9, v5}, Ljava/io/InputStream;->read([B)I
+
+    move-result v10
+
+    if-lez v10, :cond_5e
+
+    const/4 v11, 0x0
+
+    invoke-virtual {v4, v5, v11, v10}, Ljava/util/zip/ZipOutputStream;->write([BII)V
+
+    goto :goto_53
+
+    :cond_5e
+    invoke-virtual {v9}, Ljava/io/InputStream;->close()V
+
+    invoke-virtual {v4}, Ljava/util/zip/ZipOutputStream;->closeEntry()V
+
+    goto :goto_2f
+
+    :cond_65
+    new-instance v9, Ljava/io/ByteArrayOutputStream;
+
+    invoke-direct {v9}, Ljava/io/ByteArrayOutputStream;-><init>()V
+
+    invoke-virtual {v3, v7}, Ljava/util/zip/ZipFile;->getInputStream(Ljava/util/zip/ZipEntry;)Ljava/io/InputStream;
+
+    move-result-object v10
+
+    :goto_6e
+    invoke-virtual {v10, v5}, Ljava/io/InputStream;->read([B)I
+
+    move-result v11
+
+    if-lez v11, :cond_79
+
+    const/4 v12, 0x0
+
+    invoke-virtual {v9, v5, v12, v11}, Ljava/io/ByteArrayOutputStream;->write([BII)V
+
+    goto :goto_6e
+
+    :cond_79
+    invoke-virtual {v10}, Ljava/io/InputStream;->close()V
+
+    new-instance v10, Ljava/lang/String;
+
+    invoke-virtual {v9}, Ljava/io/ByteArrayOutputStream;->toByteArray()[B
+
+    move-result-object v9
+
+    const-string v11, "UTF-8"
+
+    invoke-direct {v10, v9, v11}, Ljava/lang/String;-><init>([BLjava/lang/String;)V
+
+    const-string v9, "<id>"
+
+    const-string v11, "</id>"
+
+    invoke-static {v10, v9, v11, v1}, Lcom/bbk/theme/utils/ImportThemeHelper;->replaceTag(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v10
+
+    const-string v9, "<id3>"
+
+    const-string v11, "</id3>"
+
+    invoke-static {v10, v9, v11, v1}, Lcom/bbk/theme/utils/ImportThemeHelper;->replaceTag(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v10
+
+    const-string v9, "<uid>"
+
+    const-string v11, "</uid>"
+
+    invoke-static {v10, v9, v11, v2}, Lcom/bbk/theme/utils/ImportThemeHelper;->replaceTag(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v10
+
+    new-instance v9, Ljava/util/zip/ZipEntry;
+
+    const-string v11, "description.xml"
+
+    invoke-direct {v9, v11}, Ljava/util/zip/ZipEntry;-><init>(Ljava/lang/String;)V
+
+    invoke-virtual {v4, v9}, Ljava/util/zip/ZipOutputStream;->putNextEntry(Ljava/util/zip/ZipEntry;)V
+
+    const-string v11, "UTF-8"
+
+    invoke-virtual {v10, v11}, Ljava/lang/String;->getBytes(Ljava/lang/String;)[B
+
+    move-result-object v10
+
+    invoke-virtual {v4, v10}, Ljava/util/zip/ZipOutputStream;->write([B)V
+
+    invoke-virtual {v4}, Ljava/util/zip/ZipOutputStream;->closeEntry()V
+
+    goto/16 :goto_2f
+
+    :cond_b7
+    invoke-virtual {v4}, Ljava/util/zip/ZipOutputStream;->close()V
+
+    invoke-virtual {v3}, Ljava/util/zip/ZipFile;->close()V
+
+    const/4 v0, 0x1
+    :try_end_be
+    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_be} :catch_bf
+
+    return v0
+
+    :catch_bf
+    move-exception v1
+
+    const-string v2, "ImportThemeHelper"
+
+    new-instance v3, Ljava/lang/StringBuilder;
+
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v4, "rewriteItzId error, class="
+
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    move-result-object v4
+
+    invoke-virtual {v4}, Ljava/lang/Class;->getName()Ljava/lang/String;
+
+    move-result-object v4
+
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    const-string v4, ", src="
+
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v3, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    const-string v4, ", dst="
+
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v3, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-static {v2, v3, v1}, Lcom/bbk/theme/utils/e5;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)V
+
+    return v0
 .end method
 
 .method private static writeWallpaperInfoFile(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
