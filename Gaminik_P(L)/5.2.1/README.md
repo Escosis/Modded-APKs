@@ -6,4 +6,4 @@
 - （体验优化）n70.smali 中，修改 Oooo0o() 方法，将 gRPC 状态码为 OooO0oo 时的条件跳转改为 goto，跳过“参数错误,无法正确处理请求”吐司弹窗
 - （本地化）在 apk 的 assets 中添加用于检测数据包是否下载的 com.huawei.hms.ml.model.download.translate.xml，并在 CnMainActivity.smali 的 onCreate 方法中添加首次启动时导入该 xml 的方法，使得数据包默认已下载（这并不影响自动下载），之后直接复制需要的语言数据包即可
 - （本地化）使用MT管理器注入文件提供器
-- （体验优化）zh3.smali 中，修改 OooO0O0() 方法，在读取 translate_model 后插入 const/4 v3, 0x2，强制设置默认翻译方式为离线翻译，因为在线翻译用不了
+- （体验优化）zh3.smali 中，修改 OooO0O0() 方法，在读取 translate_model 后插入 const/4 v3, 0x2，强制设置默认翻译方式为离线翻译，因为在线翻译无法使用
