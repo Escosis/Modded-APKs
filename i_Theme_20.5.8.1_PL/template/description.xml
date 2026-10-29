@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<theme> 
+  <id></id>
+  <uid></uid>
+  <id3></id3>
+  <titles>
+    <title locale="zh_CN"><![CDATA[]]></title>
+  </titles>
+  <authors>
+    <author locale="zh_CN"><![CDATA[]]></author>
+  </authors>
+  <designers>
+    <designer locale="zh_CN"><![CDATA[]]></designer>
+  </designers>
+  <descriptions>
+    <introduction locale="zh_CN"><![CDATA[]]></introduction>
+    <description locale="zh_CN"><![CDATA[]]></description>
+  </descriptions>
+  <edition>1</edition>
+</theme>

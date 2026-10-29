@@ -1,6 +1,7 @@
 ### 文件说明
 - 本修改版仅修改了`dex`，两个文件夹里分别有原版和修改版的`dex`和提取的修改过的`smali`（新增的类都位于新增的 classes7.dex 中）
 - template 文件夹位于修改版`apk`的 assets 文件夹，内含直接导入`ttf`及`mp4`时用于构造`itz`的 description.xml
+- module 文件夹中存放模块的脚本，模块中同时含有 20.5.8.1 原版（重命名为 BBKTheme_ori.apk）和修改版（重命名为 BBKTheme.apk）安装包未放入目录中
 
 ### 修改日志
 - 修改 com.bbk.theme.task.MemberInformationQuery$MemberData 类的 isActivated、isValid 方法，均令返回 true，允许下载会员免费的主题
@@ -19,6 +20,7 @@
 - （PL\_2）修改 com.bbk.theme.rich.payment.entry.GetAuthorizeEntry 类的 authorizeSuccess 方法，令返回 true，无视服务端返回值，客户端一律判定为允许下载，事实上将下载 key 文件为空的主题包，包括付费主题（这样会导致由于在该方法中不便判断试用类型，VIP 免费试用主题的下载本也能含正常的 key，现在 key 也为空了，对实际使用基本无影响）
 - （PL\_3）修改 com.bbk.theme.apply.ApplyThemeUtils 的 isWholeTheme 方法。该方法是混搭弹窗判断“是否整主题”的核心，m1.initApplyTypes 和 m1.replenishApplyTypes 靠其返回值决定是否加入 0x70（即“其他”修改项）；新版原逻辑只看 category == 1 && themeStyle == "whole"，而 themeStyle 来自 description.xml 的 \<style\>，正常下载或带 key 走 verifyMd5 时会补成 "whole"，导入本地主题常无 \<style\> 且无 key、跳过 verifyMd5，导致 themeStyle 为空、返回 false、0x70 不加，旧版 j.isWholeTheme 则不看 themeStyle，只看 category == 1、flagDownload == true、filePath 非空且 zip 中存在 "vivo" 条目，所以导入主题也能判为整主题；现将新逻辑改为“新版条件 OR 旧版条件”兜底：category != 1 返回 false，themeStyle == "whole" 返回 true，否则若 flagDownload && filePath 非空 && zip 有 "vivo" 返回 true，最后返回 false。
 - （PL\_3）改进 ImportThemeHelper 和 ImportThemeHelper$1 类，在`itz`重名时也将弹出 toast 提示；在导入成功后弹出 toast 提示；新增 ImportThemeHelper$1$1 类，在资源 ID 重复时弹出对话框提示，用户确认则自动将 description.xml 中的 id、uid、id3 改为不重复的 System.currentTimeMillis() 的十进制字符串（uid 因解析原因在前添加 String.valueOf(resType) ，这三个字段的更改方式实际与 ttf 生成字体包等的方式相同）
+- （Module）customize.sh 包含的逻辑：覆盖安装同版本号原版，定位安装包路径，提取安装包文件夹下 lib 目录至模块目录下 mnt 文件夹，用 mnt 文件夹挂载覆盖安装包所在文件夹
 
 ### 其他提醒
 - 有用户指出，升级到 PL_2 及以上的版本需要删除下载的试用主题重新下载，否则将无法应用。目前本人测试未出现此问题。
